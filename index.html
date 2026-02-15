@@ -1,0 +1,1957 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="auto" data-accent="agro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover" />
+  <meta name="robots" content="index, follow" />
+  <meta name="format-detection" content="telephone=no" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <meta name="theme-color" content="#050a07" id="themeColorMeta" />
+  <meta name="color-scheme" content="dark light" />
+
+  <title>Curso Piloto de Drone Agrícola + Pulverização | Escola Técnica Plenarius</title>
+  <meta name="description" content="Briefing guiado em ~60s → mensagem pronta para atendimento no WhatsApp, com UTMs e ID. WhatsApp liberado apenas para leads qualificados." />
+
+  <link rel="canonical" href="" />
+  <meta property="og:title" content="Curso de Drone Agrícola | Plenarius" />
+  <meta property="og:description" content="Pré-qualificação rápida → WhatsApp com mensagem pronta + origem do anúncio (UTM) + ID do lead." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="" id="ogImageMeta" />
+  <meta property="og:url" content="" id="ogUrlMeta" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+  /* =========================================================
+    Landing Qualifica — Final Premium (single-file)
+    - Tokens consistentes (inclui aliases p/ evitar regressões)
+    - Gate LGPD: nenhum envio sem consentLead
+    - Cookie banner: GA4/Meta só com consentCookies
+    - Funil Step 0→1→2→3 + Q/N/R (WhatsApp apenas Q)
+    - A11y + performance + hardening
+    - Upgrades incorporados:
+      ✅ HTML válido (</head> + 1 body)
+      ✅ Trust Strip (Step 0)
+      ✅ “Saiba mais” dinâmico (Step 1) via #goalMore
+      ✅ Micro progress “Selecionados: X” (Step 2) via #ctxCount
+      ✅ Foco no step ao navegar (A11y + premium)
+      ✅ Sticky actions no mobile (CTA sempre visível)
+      ✅ Canonical + OG:image/og:url dinâmicos
+      ✅ “O que acontece depois” (Step 3) no card de resumo
+  ========================================================= */
+
+  :root{
+    --safeTop: env(safe-area-inset-top, 0px);
+    --safeBottom: env(safe-area-inset-bottom, 0px);
+
+    --r12: 12px;
+    --r16: 16px;
+    --r20: 20px;
+    --r24: 24px;
+
+    --s1: 6px;
+    --s2: 10px;
+    --s3: 14px;
+    --s4: 18px;
+    --s5: 22px;
+    --s6: 28px;
+
+    --ease: cubic-bezier(.2,.8,.2,1);
+    --dur1: 160ms;
+    --dur2: 260ms;
+    --dur3: 420ms;
+
+    --font: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+
+    /* Neutros (DARK default) */
+    --bg: 6 9 11;
+    --surface: 14 18 20;
+    --surface2: 18 23 26;
+    --text: 236 244 248;
+    --muted: 160 176 188;
+    --border: 120 140 150;
+    --stroke: 185 205 215;
+
+    /* Acentos (DEFAULT: agro premium) */
+    --brand: 34 197 94;      /* emerald */
+    --brand2: 163 230 53;    /* lime */
+    --brand3: 16 185 129;    /* teal depth */
+
+    --danger: 248 113 113;
+    --warn: 251 191 36;
+
+    --focus: 56 189 248;
+
+    /* Aliases (compat) */
+    --text-main: var(--text);
+    --text-muted: var(--muted);
+    --brand-primary: var(--brand);
+    --brand-secondary: var(--brand2);
+
+    /* Superfícies/efeitos */
+    --glass: rgba(var(--surface), .78);
+    --glass2: rgba(var(--surface2), .58);
+
+    --strokeA: rgba(var(--border), .18);
+    --strokeB: rgba(var(--border), .26);
+
+    --ringBrand: rgba(var(--brand), .16);
+    --ringBrand2: rgba(var(--brand2), .14);
+
+    --gradBrand: linear-gradient(135deg, rgba(var(--brand), .98), rgba(var(--brand2), .98));
+    --gradBrand90: linear-gradient(90deg, rgba(var(--brand), .92), rgba(var(--brand2), .92));
+
+    --onBrand: 5 10 8;
+
+    --shadow1: 0 14px 34px rgba(0, 0, 0, 0.836);
+    --shadow2: 0 26px 70px rgba(0,0,0,.38);
+    --shadowBrand: 0 18px 46px rgba(var(--brand), .18);
+
+    /* Assets via JS */
+    --heroBgUrl: none;
+    --heroBgOpacity: .16;
+
+    color-scheme: dark;
+  }
+
+  html[data-accent="agro"]{
+    --brand: 34 197 94;
+    --brand2: 163 230 53;
+    --brand3: 16 185 129;
+  }
+  html[data-accent="forest"]{
+    --brand: 16 185 129;
+    --brand2: 34 197 94;
+    --brand3: 5 150 105;
+  }
+  html[data-accent="ocean"]{
+    --brand: 59 130 246;
+    --brand2: 56 189 248;
+    --brand3: 99 102 241;
+    --ringBrand: rgba(var(--brand), .14);
+    --ringBrand2: rgba(var(--brand2), .12);
+    --shadowBrand: 0 18px 46px rgba(var(--brand), .14);
+  }
+  html[data-accent="violet"]{
+    --brand: 168 85 247;
+    --brand2: 236 72 153;
+    --brand3: 99 102 241;
+    --shadowBrand: 0 18px 46px rgba(var(--brand), .16);
+  }
+  html[data-accent="amber"]{
+    --brand: 245 158 11;
+    --brand2: 251 191 36;
+    --brand3: 234 88 12;
+    --onBrand: 12 9 6;
+    --shadowBrand: 0 18px 46px rgba(var(--brand), .14);
+  }
+
+  html[data-theme="auto"]{ color-scheme: dark light; }
+  @media (prefers-color-scheme: light){
+    html[data-theme="auto"]{
+      --bg: 248 250 252;
+      --surface: 255 255 255;
+      --surface2: 246 248 250;
+      --text: 14 23 42;
+      --muted: 71 85 105;
+      --border: 148 163 184;
+      --stroke: 100 116 139;
+
+      --glass: rgba(var(--surface), .88);
+      --glass2: rgba(var(--surface2), .66);
+      --strokeA: rgba(var(--border), .22);
+      --strokeB: rgba(var(--border), .30);
+
+      --shadow1: 0 14px 34px rgba(2, 6, 23, .10);
+      --shadow2: 0 30px 80px rgba(2, 6, 23, .14);
+      --shadowBrand: 0 18px 46px rgba(var(--brand), .12);
+
+      color-scheme: light;
+    }
+  }
+  html[data-theme="light"]{
+    --bg: 248 250 252;
+    --surface: 255 255 255;
+    --surface2: 246 248 250;
+    --text: 14 23 42;
+    --muted: 71 85 105;
+    --border: 148 163 184;
+    --stroke: 100 116 139;
+
+    --glass: rgba(var(--surface), .90);
+    --glass2: rgba(var(--surface2), .68);
+    --strokeA: rgba(var(--border), .22);
+    --strokeB: rgba(var(--border), .30);
+
+    --shadow1: 0 14px 34px rgba(2, 6, 23, .10);
+    --shadow2: 0 30px 80px rgba(2, 6, 23, .14);
+    --shadowBrand: 0 18px 46px rgba(var(--brand), .12);
+
+    color-scheme: light;
+  }
+  html[data-theme="dark"]{ color-scheme: dark; }
+
+  *{ box-sizing: border-box; }
+  html,body{ height: 100%; }
+  body{
+    margin: 0;
+    font-family: var(--font);
+    background: rgb(var(--bg));
+    color: rgb(var(--text));
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+  }
+
+  a{ color: inherit; text-decoration: none; }
+  button, a{ -webkit-tap-highlight-color: transparent; }
+  ::selection{ background: rgba(var(--brand), .22); }
+
+  .sr{ position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+  .focus:focus-visible{
+    outline: 3px solid rgba(var(--focus), .9);
+    outline-offset: 3px;
+    border-radius: 10px;
+  }
+
+  .bg-wrap{
+    position: fixed; inset: 0; pointer-events: none; z-index: -2;
+    background:
+      radial-gradient(900px 550px at 18% 12%, rgba(var(--brand), .18), transparent 60%),
+      radial-gradient(900px 550px at 85% 18%, rgba(var(--brand2), .14), transparent 60%),
+      radial-gradient(800px 600px at 50% 110%, rgba(var(--brand3), .12), transparent 60%),
+      radial-gradient(1000px 700px at 50% -10%, rgba(var(--stroke), .08), transparent 60%),
+      linear-gradient(180deg, rgba(var(--bg), 0), rgba(var(--bg), .75));
+  }
+
+  .hero-bg{
+    position: fixed; inset: 0; pointer-events: none; z-index: -3;
+    opacity: 0;
+    transform: scale(1.03);
+    transition: opacity var(--dur3) var(--ease);
+    background:
+      linear-gradient(180deg, rgba(var(--bg), .82), rgba(var(--bg), .98)),
+      radial-gradient(1200px 650px at 20% 0%, rgba(var(--brand), .14), transparent 60%),
+      radial-gradient(1200px 650px at 80% 0%, rgba(var(--brand2), .10), transparent 60%),
+      var(--heroBgUrl);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    filter: saturate(1.04) contrast(1.03);
+  }
+
+  body[data-hero-bg="step0"][data-step="0"] .hero-bg{ opacity: var(--heroBgOpacity); }
+  body[data-hero-bg="all"] .hero-bg{ opacity: var(--heroBgOpacity); }
+  body[data-hero-bg="off"] .hero-bg{ opacity: 0; display: none; }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ scroll-behavior: auto !important; transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+    .hero-bg{ transition: none; }
+  }
+
+  .wrap{ max-width: 980px; margin: 0 auto; padding: calc(var(--safeTop) + 16px) 16px calc(var(--safeBottom) + 18px); }
+
+  header{
+    position: sticky; top: 0; z-index: 50;
+    padding-top: var(--safeTop);
+    background: linear-gradient(180deg, rgba(var(--bg), .92), rgba(var(--bg), .70));
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--strokeA);
+  }
+  .topbar{
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 12px 16px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .brand{ display:flex; align-items:center; gap: 10px; min-width: 0; }
+
+  .logo{
+    width: 40px; height: 40px; border-radius: 14px;
+    background: var(--gradBrand);
+    box-shadow: var(--shadowBrand);
+    display:flex; align-items:center; justify-content:center;
+    color: rgb(var(--onBrand));
+    font-weight: 800;
+    letter-spacing: -.02em;
+    flex: 0 0 auto;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .logo-img{
+    display:none;
+    width: 100%;
+    height: 100%;
+    padding: 6px;
+    border-radius: 14px;
+    object-fit: contain;
+    background: transparent;
+  }
+  html.has-logo #brandInitials{ display:none; }
+  html.has-logo .logo-img{ display:block; }
+
+  .brand-txt{ min-width: 0; }
+  .brand-name{ font-weight: 700; font-size: 14px; letter-spacing: -0.01em; white-space: nowrap; overflow:hidden; text-overflow: ellipsis; }
+  .brand-sub{ font-size: 12px; color: rgba(var(--muted), .92); white-space: nowrap; overflow:hidden; text-overflow: ellipsis; }
+
+  .pill{
+    display:inline-flex; align-items:center; gap: 8px;
+    padding: 8px 10px;
+    border-radius: 999px;
+    border: 1px solid var(--strokeB);
+    background: rgba(var(--surface), .62);
+    box-shadow: 0 10px 24px rgba(0,0,0,.16);
+    font-size: 12px;
+    color: rgba(var(--text), .92);
+    flex: 0 0 auto;
+    user-select: none;
+  }
+  .dot{
+    width: 8px; height: 8px; border-radius: 99px;
+    background: rgba(var(--brand), .95);
+    box-shadow: 0 0 0 4px rgba(var(--brand), .16);
+    flex: 0 0 auto;
+  }
+
+  .progress{
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 0 16px 12px;
+  }
+  .bar{
+    height: 8px;
+    border-radius: 999px;
+    background: rgba(var(--border), .16);
+    overflow: hidden;
+    position: relative;
+  }
+  .bar > i{
+    display:block;
+    height: 100%;
+    width: 0%;
+    border-radius: 999px;
+    background: var(--gradBrand90);
+    transition: width var(--dur2) var(--ease);
+  }
+
+  .card{
+    position: relative;
+    border: 1px solid var(--strokeA);
+    background: var(--glass);
+    border-radius: var(--r24);
+    box-shadow: var(--shadow1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    overflow: hidden;
+  }
+  .card::before{
+    content:"";
+    position:absolute; inset:-2px;
+    pointer-events:none;
+    background:
+      radial-gradient(600px 280px at 12% 18%, rgba(var(--brand), .16), transparent 60%),
+      radial-gradient(520px 240px at 88% 22%, rgba(var(--brand2), .12), transparent 60%),
+      radial-gradient(680px 320px at 50% 120%, rgba(var(--brand3), .10), transparent 62%);
+    opacity: .9;
+    z-index: 0;
+  }
+  .card > *{ position: relative; z-index: 1; }
+
+  @supports not ((backdrop-filter: blur(10px))){
+    .card{ background: rgba(var(--surface), .92); }
+  }
+
+  .section{ margin-top: 16px; }
+  .pad{ padding: 18px; }
+
+  .grid2{ display:grid; grid-template-columns: 1fr; gap: 12px; }
+  @media (min-width: 860px){
+    .grid2{ grid-template-columns: 1.1fr .9fr; gap: 14px; }
+  }
+
+  h1{
+    margin: 0;
+    font-size: 28px;
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+  }
+  @media (min-width: 860px){
+    h1{ font-size: 36px; }
+  }
+  .lede{ margin: 10px 0 0; color: rgba(var(--muted), .95); font-size: 15px; line-height: 1.45; }
+
+  .kpis{ display:flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
+  .kpi{
+    padding: 10px 12px;
+    border-radius: 16px;
+    border: 1px solid var(--strokeA);
+    background: rgba(var(--surface2), .62);
+    font-size: 12px;
+    color: rgba(var(--text), .92);
+  }
+
+  .hero-drone{
+    display:none;
+    width: 100%;
+    max-width: 360px;
+    margin-top: 12px;
+    border-radius: 18px;
+    border: 1px solid var(--strokeA);
+    box-shadow: var(--shadowBrand);
+    object-fit: cover;
+  }
+  @media (min-width: 860px){
+    .hero-drone{ max-width: 420px; }
+  }
+
+  .actions{ display:flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+  .btn{
+    border: 0;
+    cursor: pointer;
+    border-radius: 16px;
+    padding: 12px 14px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    transition: transform var(--dur1) var(--ease), filter var(--dur1) var(--ease), box-shadow var(--dur1) var(--ease);
+    user-select: none;
+    display:inline-flex; align-items:center; justify-content:center;
+    gap: 10px;
+    min-height: 46px;
+  }
+  .btn:active{ transform: translateY(1px) scale(.99); }
+  .btn:focus-visible{
+    outline: 3px solid rgba(var(--focus), .9);
+    outline-offset: 3px;
+  }
+  .btn-primary{
+    color: rgb(var(--onBrand));
+    background: var(--gradBrand);
+    box-shadow: var(--shadowBrand);
+  }
+  .btn-ghost{
+    color: rgba(var(--text), .94);
+    background: rgba(var(--surface2), .52);
+    border: 1px solid var(--strokeB);
+    box-shadow: 0 14px 26px rgba(0,0,0,.14);
+  }
+  .btn[disabled]{ opacity: .55; cursor: not-allowed; filter: grayscale(.1); transform: none; }
+
+  .hint{ margin-top: 10px; font-size: 12px; color: rgba(var(--muted), .92); }
+
+  .step{ display:none; }
+  .step[aria-hidden="false"]{ display:block; }
+  .step-title{
+    display:flex; align-items:flex-start; justify-content: space-between; gap: 12px;
+    margin-bottom: 10px;
+  }
+  .badge{
+    font-size: 11px;
+    padding: 8px 10px;
+    border-radius: 999px;
+    border: 1px solid var(--strokeB);
+    background: rgba(var(--surface2), .58);
+    color: rgba(var(--text), .92);
+    user-select:none;
+    white-space: nowrap;
+    flex: 0 0 auto;
+  }
+  .badge strong{ color: rgba(var(--brand), .95); }
+
+  .optgrid{ display:grid; grid-template-columns: 1fr; gap: 10px; margin-top: 10px; }
+  @media (min-width: 680px){ .optgrid{ grid-template-columns: 1fr 1fr; } }
+
+  .option{
+    border-radius: 18px;
+    border: 1px solid var(--strokeB);
+    background: var(--glass2);
+    padding: 12px 12px;
+    cursor: pointer;
+    display:flex; gap: 10px;
+    transition: transform var(--dur1) var(--ease), border-color var(--dur1) var(--ease), background var(--dur1) var(--ease);
+    user-select:none;
+  }
+  .option:hover{ transform: translateY(-1px); border-color: rgba(var(--border), .34); }
+  .option[aria-checked="true"]{
+    border-color: rgba(var(--brand), .54);
+    box-shadow: 0 20px 54px rgba(0,0,0,.22);
+    background:
+      linear-gradient(180deg, rgba(var(--brand), .14), rgba(0,0,0,0)),
+      rgba(var(--surface2), .66);
+  }
+  .opt-ic{
+    width: 38px; height: 38px; border-radius: 14px;
+    display:flex; align-items:center; justify-content:center;
+    background: rgba(var(--brand), .10);
+    border: 1px solid rgba(var(--brand), .20);
+    flex: 0 0 auto;
+  }
+  .opt-tt{ font-weight: 750; letter-spacing: -0.01em; }
+  .opt-dd{ font-size: 12px; margin-top: 4px; color: rgba(var(--muted), .92); line-height: 1.35; }
+
+  .row{ display:flex; gap: 10px; flex-wrap: wrap; align-items:center; justify-content: space-between; margin-top: 12px; }
+  .row .left{ display:flex; gap: 10px; flex-wrap: wrap; align-items:center; }
+
+  .divider{ height: 1px; background: rgba(var(--border), .16); margin: 14px 0; }
+
+  label{ display:block; font-size: 12px; color: rgba(var(--muted), .92); margin: 10px 0 6px; }
+  .input, .textarea, select{
+    width: 100%;
+    border-radius: 16px;
+    border: 1px solid var(--strokeB);
+    background: rgba(var(--surface2), .48);
+    color: rgba(var(--text), .96);
+    padding: 12px 12px;
+    font: inherit;
+    outline: none;
+    transition: border-color var(--dur1) var(--ease), box-shadow var(--dur1) var(--ease);
+  }
+  .input:focus, .textarea:focus, select:focus{
+    border-color: rgba(var(--focus), .6);
+    box-shadow: 0 0 0 4px rgba(var(--focus), .16);
+  }
+  .textarea{ min-height: 92px; resize: vertical; }
+
+  .check{
+    display:flex; gap: 10px; align-items:flex-start;
+    padding: 10px 10px;
+    border-radius: 16px;
+    border: 1px solid var(--strokeA);
+    background: rgba(var(--surface2), .44);
+    margin-top: 12px;
+  }
+  .check input{ margin-top: 2px; }
+  .check p{ margin: 0; font-size: 12px; color: rgba(var(--muted), .95); line-height: 1.4; }
+  .check strong{ color: rgba(var(--text), .92); }
+
+  .summary{
+    border-radius: 20px;
+    border: 1px solid var(--strokeA);
+    background: rgba(var(--surface2), .50);
+    padding: 12px;
+  }
+  .kv{
+    display:grid; grid-template-columns: 120px 1fr; gap: 8px 10px;
+    font-size: 12px;
+  }
+  .kv b{ color: rgba(var(--muted), .95); font-weight: 650; }
+  .kv span{ color: rgba(var(--text), .94); }
+  .kv small{ color: rgba(var(--muted), .92); }
+
+  .msgbox{
+    margin-top: 12px;
+    border-radius: 20px;
+    border: 1px solid var(--strokeA);
+    background: rgba(0,0,0,.18);
+    padding: 12px;
+    font-family: var(--mono);
+    font-size: 12px;
+    color: rgba(var(--text), .92);
+    white-space: pre-wrap;
+    word-break: break-word;
+    line-height: 1.45;
+  }
+  html[data-theme="light"] .msgbox{ background: rgba(2,6,23,.06); }
+
+  .note{
+    margin-top: 10px;
+    font-size: 12px;
+    color: rgba(var(--muted), .92);
+  }
+  .note strong{ color: rgba(var(--text), .92); }
+
+  .toast{
+    position: fixed; left: 50%; transform: translateX(-50%);
+    bottom: calc(var(--safeBottom) + 16px);
+    z-index: 90;
+    width: min(560px, calc(100% - 24px));
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity var(--dur2) var(--ease), transform var(--dur2) var(--ease);
+  }
+  .toast.show{
+    opacity: 1;
+    transform: translateX(-50%) translateY(-2px);
+  }
+  .toast .box{
+    pointer-events: auto;
+    border-radius: 18px;
+    border: 1px solid var(--strokeB);
+    background: rgba(var(--surface), .86);
+    box-shadow: var(--shadow2);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 12px 12px;
+    display:flex; align-items:center; gap: 10px;
+  }
+  .toast .t-dot{
+    width: 10px; height: 10px; border-radius: 999px;
+    background: rgba(var(--brand), .95);
+    box-shadow: 0 0 0 4px rgba(var(--brand), .16);
+    flex: 0 0 auto;
+  }
+  .toast .t-title{ font-weight: 800; font-size: 13px; letter-spacing: -0.01em; margin: 0; }
+  .toast .t-msg{ font-size: 12px; color: rgba(var(--muted), .92); margin: 2px 0 0; }
+
+  .cookie{
+    position: fixed; left: 50%; transform: translateX(-50%);
+    bottom: calc(var(--safeBottom) + 16px);
+    z-index: 80;
+    width: min(920px, calc(100% - 24px));
+    display:none;
+  }
+  .cookie.show{ display:block; }
+  .cookie .box{
+    border-radius: 22px;
+    border: 1px solid var(--strokeA);
+    background: rgba(var(--surface), .88);
+    box-shadow: var(--shadow2);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 14px;
+    display:flex; gap: 12px; flex-wrap: wrap; align-items:center; justify-content: space-between;
+  }
+  .cookie p{ margin: 0; font-size: 12px; color: rgba(var(--muted), .95); line-height: 1.35; }
+  .cookie .c-actions{ display:flex; gap: 10px; flex-wrap: wrap; }
+
+  footer{
+    margin-top: 16px;
+    padding: 16px 2px 0;
+    color: rgba(var(--muted), .92);
+    font-size: 12px;
+    text-align: center;
+  }
+  footer a{ text-decoration: underline; text-underline-offset: 3px; }
+
+  .muted{ color: rgba(var(--muted), .92); }
+
+  @media (prefers-contrast: more){
+    .card, .pill, .option, .input, .textarea, select, .summary, .msgbox, .toast .box, .cookie .box{
+      border-color: rgba(var(--border), .38);
+    }
+    .option[aria-checked="true"]{ border-color: rgba(var(--brand), .70); }
+  }
+
+  /* ✅ Sticky actions no mobile (premium UX) */
+  @media (max-width: 560px){
+    .row{
+      position: sticky;
+      bottom: calc(var(--safeBottom) + 10px);
+      padding-top: 10px;
+      background: linear-gradient(180deg, transparent, rgba(var(--bg), .78) 30%, rgba(var(--bg), .92));
+      border-top: 1px solid rgba(var(--border), .16);
+      z-index: 5;
+    }
+  }
+  </style>
+</head>
+
+<body data-step="0" data-hero-bg="step0">
+  <a class="sr focus" href="#app">Pular para o conteúdo</a>
+  <div class="hero-bg" aria-hidden="true"></div>
+  <div class="bg-wrap" aria-hidden="true"></div>
+
+  <noscript>
+    <div class="wrap" style="padding-top:24px;">
+      <div class="card pad">
+        Para usar o briefing guiado, ative o JavaScript. Se preferir, fale direto no WhatsApp:
+        <a class="focus" id="noscriptWa" href="#"
+           style="display:inline-block;margin-top:10px;color:rgb(var(--brand));text-decoration:underline;">
+          Abrir WhatsApp
+        </a>
+      </div>
+    </div>
+  </noscript>
+
+  <header>
+    <div class="topbar">
+      <div class="brand" aria-label="Marca">
+        <div class="logo" aria-hidden="true">
+          <img id="brandLogoImg" class="logo-img" alt="Logo da Escola Técnica Plenarius" loading="eager" decoding="async" />
+          <span id="brandInitials">PL</span>
+        </div>
+
+        <div class="brand-txt">
+          <div class="brand-name" id="brandName">Plenarius</div>
+          <div class="brand-sub" id="brandTag">Curso de Drone Agrícola</div>
+        </div>
+      </div>
+
+      <div style="display:flex;gap:10px;align-items:center;">
+        <div class="pill" title="Status de resposta">
+          <span class="dot" aria-hidden="true"></span>
+          <span id="responseBadge">Respondo hoje</span>
+        </div>
+        <button class="btn btn-ghost focus" id="themeBtn" type="button" aria-label="Alternar tema">
+          Tema
+        </button>
+      </div>
+    </div>
+
+    <div class="progress" aria-label="Progresso do briefing">
+      <div class="bar"><i id="progFill"></i></div>
+    </div>
+  </header>
+
+  <main class="wrap" id="app">
+    <!-- STEP 0 -->
+    <section class="step section" id="step0" aria-hidden="false">
+      <div class="grid2">
+        <div class="card pad">
+          <h1 id="heroHeadline">Formação prática em Drone Agrícola + Pulverização</h1>
+
+          <p class="lede" id="heroSub">
+            Em ~60 segundos, você responde 4 decisões rápidas e recebe uma mensagem pronta para WhatsApp
+            (com <strong>ID do lead</strong> + origem do anúncio).
+            Assim a coordenação já te responde com <strong>turmas, valores e o caminho ideal</strong> — sem enrolação.
+          </p>
+
+          <!-- ✅ Trust Strip (reduz objeção antes do quiz) -->
+          <div class="summary" id="trustStrip" style="margin-top:12px;">
+            <div class="kv" style="gap:10px;">
+              <b>Credibilidade</b><span>26 anos formando profissionais no agro (Plenarius).</span>
+              <b>Prática de verdade</b><span>2 modelos de drone + pulverização no campo.</span>
+              <b>Incluso</b><span>Hospedagem + almoço (churrasco) nos dias de prática.</span>
+              <b>Conformidade</b><span>NR-31, legislação vigente e EPIs.</span>
+              <b>Bônus</b><span>Mapeamento 3D + índices vegetativos.</span>
+            </div>
+          </div>
+
+          <div class="kpis" id="heroKpis">
+            <div class="kpi">Briefing: ~60s</div>
+            <div class="kpi"><strong>Bônus:</strong> Mapeamento 3D</div>
+            <div class="kpi">Prática + pulverização</div>
+            <div class="kpi">Suporte antes/durante/depois</div>
+          </div>
+
+          <img id="heroDroneImg" class="hero-drone" alt="Drone agrícola em operação no campo" loading="lazy" decoding="async" />
+
+          <!-- Conteúdo/valor (mantido) -->
+          <div class="summary" style="margin-top:12px;">
+            <div class="kv" style="gap:10px;">
+              <b>Conteúdo do curso</b>
+              <span>Preparo de calda • EPI’s • NR-31 • Legislação • Manutenção • Índices vegetativos • Networking</span>
+
+              <b>Potencial de ganhos</b>
+              <span>Faixa divulgada no anúncio: R$ 7.000 a R$ 14.000 <small>(varia por região, experiência e demanda)</small></span>
+            </div>
+          </div>
+
+          <div class="actions">
+            <button class="btn btn-primary focus" id="startBtn" type="button">
+              Quero ver turmas e valores
+              <span aria-hidden="true">→</span>
+            </button>
+            <button class="btn btn-ghost focus" id="directWaBtn" type="button">
+              Falar direto (sem briefing)
+            </button>
+          </div>
+
+          <p class="hint" id="heroHint">
+            <strong>Privacidade:</strong> suas respostas ficam no seu dispositivo durante o briefing.
+            Só salvamos e enviamos se você autorizar no final (LGPD). Cookies de tracking (GA4/Meta) só com consentimento.
+          </p>
+        </div>
+
+        <div class="card pad">
+          <div class="step-title">
+            <div>
+              <div class="badge"><strong>Como funciona</strong> (rápido e objetivo)</div>
+            </div>
+          </div>
+
+          <div class="divider"></div>
+
+          <div class="summary">
+            <div class="kv">
+              <b>1) Seu objetivo</b><span>Define o caminho (iniciante, pulverização, reciclagem, manutenção).</span>
+              <b>2) Seu contexto</b><span>Se já tem drone, se quer prestar serviço, se precisa de certificado, etc.</span>
+              <b>3) Seu momento</b><span>Prazo e intenção — pra te mandar a turma e condição mais coerente.</span>
+              <b>4) Resumo pronto</b><span>Mensagem organizada para WhatsApp (com ID + origem do anúncio).</span>
+            </div>
+          </div>
+
+          <p class="note">
+            <strong>Por que isso ajuda você?</strong> Você evita ida e volta no WhatsApp e já recebe uma orientação clara
+            com base no que realmente precisa.
+          </p>
+
+          <p class="note" style="margin-top:10px;">
+            <strong>Por que isso ajuda a escola?</strong> O atendimento fica mais rápido e preciso —
+            e você é respondido com prioridade quando está pronto(a) para avançar.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- STEP 1 -->
+    <section class="step section" id="step1" aria-hidden="true">
+      <div class="card pad">
+        <div class="step-title">
+          <div>
+            <div class="badge">Passo 1/3</div>
+            <h2 style="margin:8px 0 0; font-size:18px; letter-spacing:-.01em;">Qual é seu objetivo agora?</h2>
+            <p class="lede" style="margin:6px 0 0;">
+              Escolha <strong>1</strong> opção. Isso ajusta as próximas perguntas e a recomendação do caminho.
+            </p>
+          </div>
+        </div>
+
+        <div class="optgrid" role="radiogroup" aria-label="Objetivo principal" id="goalGroup"></div>
+
+        <!-- ✅ “Saiba mais” dinâmico (sem mexer na seleção) -->
+        <div class="note" id="goalMore" aria-live="polite" style="margin-top:10px;"></div>
+
+        <div class="row">
+          <div class="left">
+            <button class="btn btn-ghost focus" id="back1" type="button">Voltar</button>
+          </div>
+          <button class="btn btn-primary focus" id="next1" type="button" disabled>Continuar</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- STEP 2 -->
+    <section class="step section" id="step2" aria-hidden="true">
+      <div class="card pad">
+        <div class="step-title">
+          <div>
+            <div class="badge">Passo 2/3</div>
+            <h2 style="margin:8px 0 0; font-size:18px; letter-spacing:-.01em;">O que é mais importante no seu caso?</h2>
+            <p class="lede" style="margin:6px 0 0;">
+              Pode marcar mais de um. As opções se adaptam ao seu objetivo.
+            </p>
+            <!-- ✅ micro progress -->
+            <p class="hint" id="ctxCount">Selecionados: 0</p>
+          </div>
+        </div>
+
+        <div class="optgrid" role="group" aria-label="Contexto e preferências" id="ctxGroup"></div>
+
+        <div class="row">
+          <div class="left">
+            <button class="btn btn-ghost focus" id="back2" type="button">Voltar</button>
+          </div>
+          <button class="btn btn-primary focus" id="next2" type="button" disabled>Continuar</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- STEP 3 -->
+    <section class="step section" id="step3" aria-hidden="true">
+      <div class="grid2">
+        <div class="card pad">
+          <div class="step-title">
+            <div>
+              <div class="badge">Passo 3/3</div>
+              <h2 style="margin:8px 0 0; font-size:18px; letter-spacing:-.01em;">Só mais 2 detalhes (pra te responder certo)</h2>
+              <p class="lede" style="margin:6px 0 0;">
+                Isso define a melhor rota de atendimento e se liberamos o WhatsApp automaticamente.
+              </p>
+            </div>
+            <div class="badge" id="qualBadge">Status: —</div>
+          </div>
+
+          <label for="timingSel">Quando pretende iniciar?</label>
+          <select class="focus" id="timingSel">
+            <option value="">Selecione…</option>
+            <option value="7d">Em até 7 dias</option>
+            <option value="30d">Em até 30 dias</option>
+            <option value="60d">Em até 60 dias</option>
+            <option value="later">Estou pesquisando / mais para frente</option>
+          </select>
+
+          <label for="budgetSel">Momento de matrícula</label>
+          <select class="focus" id="budgetSel">
+            <option value="">Selecione…</option>
+            <option value="ready">Quero me matricular (preciso só de datas/condições)</option>
+            <option value="maybe">Tenho interesse (preciso alinhar valores)</option>
+            <option value="no">Ainda sem orçamento (quero entender primeiro)</option>
+          </select>
+
+          <label for="nameInp">Nome (opcional)</label>
+          <input class="input focus" id="nameInp" type="text" inputmode="text" autocomplete="name" placeholder="Seu nome" />
+
+          <label for="cityInp">Cidade/UF (opcional)</label>
+          <input class="input focus" id="cityInp" type="text" inputmode="text" autocomplete="address-level2" placeholder="Ex: Ribeirão Preto/SP" />
+
+          <label for="noteInp">Observações (opcional)</label>
+          <textarea class="textarea focus" id="noteInp"
+            placeholder="Ex: já tenho drone / foco em soja / preciso de certificado / quero trabalhar prestando serviço…"></textarea>
+
+          <div class="check">
+            <input class="focus" id="consentLead" type="checkbox" />
+            <div>
+              <p><strong>Autorizo</strong> salvar meu contato e respostas para organizar o atendimento (LGPD).</p>
+              <p>
+                Você pode solicitar exclusão a qualquer momento. Sem autorização, você ainda pode
+                <strong>copiar a mensagem</strong> e chamar no WhatsApp manualmente.
+              </p>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="left">
+              <button class="btn btn-ghost focus" id="back3" type="button">Voltar</button>
+              <button class="btn btn-ghost focus" id="copyBtn" type="button" disabled>Copiar mensagem</button>
+            </div>
+            <button class="btn btn-primary focus" id="waBtn" type="button" disabled>Abrir WhatsApp</button>
+          </div>
+
+          <p class="hint" id="gateHint">
+            Para manter um atendimento rápido e sem ruído, o WhatsApp abre automaticamente quando há intenção real de matrícula.
+            Se não abrir, você ainda consegue copiar a mensagem e enviar quando quiser.
+          </p>
+        </div>
+
+        <div class="card pad">
+          <div class="step-title">
+            <div>
+              <div class="badge"><strong>Resumo</strong> (vai no WhatsApp)</div>
+              <p class="lede" style="margin:8px 0 0;">Revise e copie. Assim você já chega com tudo organizado.</p>
+            </div>
+          </div>
+
+          <!-- ✅ “O que acontece depois” (expectativa clara) -->
+          <div class="summary" id="nextSteps" style="margin-bottom:12px;">
+            <div class="kv">
+              <b>Depois disso</b><span>Você envia → Coordenação retorna com turmas/datas/valores → Confirmação → Matrícula.</span>
+              <b>Dica</b><span>Se estiver em pesquisa, copie a mensagem e salve. Você retoma quando fizer sentido.</span>
+            </div>
+          </div>
+
+          <div class="summary" id="summaryBox"></div>
+          <div class="msgbox" id="msgBox">—</div>
+
+          <p class="note" id="privacyNote">
+            <strong>Privacidade:</strong> UTMs e o ID ajudam a identificar o anúncio e agilizar o atendimento.
+            Tracking de terceiros (GA4/Meta) só carrega se você aceitar cookies.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <span id="footerText">© <span id="year"></span> <span id="footerBrand">Plenarius</span>. </span>
+      <a class="focus" href="#" id="policyLink" rel="nofollow noopener" target="_blank">Política de Privacidade</a>
+    </footer>
+  </main>
+
+  <!-- Toast -->
+  <div class="toast" id="toast" aria-live="polite" aria-atomic="true">
+    <div class="box">
+      <span class="t-dot" id="toastDot" aria-hidden="true"></span>
+      <div style="min-width:0">
+        <p class="t-title" id="toastTitle">Ok</p>
+        <p class="t-msg" id="toastMsg">—</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cookie banner (only if tracking IDs exist) -->
+  <div class="cookie" id="cookieBanner" role="dialog" aria-label="Preferências de cookies">
+    <div class="box">
+      <p id="cookieText">
+        Usamos cookies para medir performance de anúncios (GA4/Meta) e melhorar a experiência.
+        Você pode recusar sem prejuízo.
+      </p>
+      <div class="c-actions">
+        <button class="btn btn-ghost focus" id="cookieDecline" type="button">Recusar</button>
+        <button class="btn btn-primary focus" id="cookieAccept" type="button">Aceitar</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (() => {
+      "use strict";
+
+      try { if ("scrollRestoration" in history) history.scrollRestoration = "manual"; } catch (_) {}
+
+      /* =========================
+         CONFIG (EDITE SÓ AQUI)
+         ========================= */
+      const CONFIG = Object.freeze({
+        brand: {
+          initials: "PL",
+          name: "Escola Técnica Plenarius",
+          tagline: "Curso de Drone Agrícola • Pulverização",
+          responseBadge: "Coordenadora Ana Carolina",
+          policyUrl: "https://escolaplenarius.com.br/index.php/piloto-de-drone-agricola/",
+          canonical: "" // opcional: "https://seu-dominio.com/curso-drone"
+        },
+
+        whatsappE164: "5515997996150",
+        directWhatsAppAllowed: false,
+
+        ui: {
+          themeDefault: "auto",
+          themeColorDark: "#050a07",
+          themeColorLight: "#f8fafc",
+        },
+
+        design: {
+          heroBgUrl: "https://images.unsplash.com/photo-1524143986875-3b3f0b91e5a3?auto=format&fit=crop&w=1600&q=70",
+          logoUrl: "https://escolaplenarius.com.br/wp-content/uploads/2024/08/Logotipo_Plenarios-azul-PNG-2048x1115.png",
+          heroCardImageUrl: "https://escolaplenarius.com.br/wp-content/uploads/2024/09/arteplenarius14-1-2048x819.png",
+          heroBgOpacityStep0: 0.18,
+          heroBgOnlyStep0: true
+        },
+
+        hero: {
+          headlineA: "Formação prática em Drone Agrícola + Pulverização",
+          headlineB: "Vire Piloto de Drone Agrícola com prática em campo + bônus Mapeamento 3D",
+          abParam: "h",
+          sub: "Responda em ~60s e receba turmas, valores e orientação certa no WhatsApp (com ID + origem do anúncio).",
+          kpis: [
+            "Briefing: ~60s",
+            "Bônus: Mapeamento 3D",
+            "Hospedagem + prática",
+            "Suporte completo"
+          ]
+        },
+
+        steps: {
+          goals: [
+            { id:"piloto", title:"Piloto (iniciante)", desc:"Começar do zero com base sólida, segurança e rotina de operação.", icon:"🛩️" },
+            { id:"pulv",   title:"Pulverização (foco prático)", desc:"Calibração, preparo de calda, boas práticas e aplicação eficiente.", icon:"🌾" },
+            { id:"recic",  title:"Reciclagem / avançado", desc:"Aprimorar técnica, produtividade e padrão profissional no campo.", icon:"⚙️" },
+            { id:"manut",  title:"Manutenção / ajustes", desc:"Cuidados, checklists, diagnóstico e vida útil do equipamento.", icon:"🧰" }
+          ],
+          context: [
+            { id:"hasDrone",  title:"Já tenho drone", desc:"Quero alinhar o curso ao meu equipamento e ganhar segurança.", icon:"✅" },
+            { id:"noDrone",   title:"Ainda não tenho drone", desc:"Preciso de orientação de escolha, custo e melhor modelo.", icon:"🧭" },
+            { id:"workAgro",  title:"Trabalho no agro", desc:"Quero aplicar na propriedade/empresa com mais eficiência.", icon:"🚜" },
+            { id:"offerSvc",  title:"Quero prestar serviço", desc:"Foco em padrão profissional, rotina e segurança no campo.", icon:"📈" },
+            { id:"needCert",  title:"Preciso de certificado", desc:"Documento para empresa, processos internos ou currículo.", icon:"📄" },
+            { id:"needDates", title:"Quero datas e valores", desc:"Minha principal dúvida é turma, investimento e condições.", icon:"📆" }
+          ],
+          contextByGoal: {
+            piloto: ["noDrone","workAgro","needCert","needDates"],
+            pulv: ["hasDrone","workAgro","offerSvc","needCert","needDates"],
+            recic: ["hasDrone","offerSvc","needDates","needCert"],
+            manut: ["hasDrone","needDates"]
+          }
+        },
+
+        qualification: {
+          openWhatsAppFor: ["Q"],
+        },
+
+        leadCapture: {
+          enabled: true,
+          targets: [],
+          timeoutMs: 4500,
+        },
+
+        tracking: {
+          ga4MeasurementId: "",
+          metaPixelId: "",
+        }
+      });
+
+      /* =========================
+         HELPERS
+         ========================= */
+      const $ = (sel, el=document) => el.querySelector(sel);
+      const $$ = (sel, el=document) => Array.from(el.querySelectorAll(sel));
+      const clamp = (n, a, b) => Math.max(a, Math.min(b, n));
+      const nowISO = () => new Date().toISOString();
+
+      const escapeHtml = (s) => String(s ?? "")
+        .replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;").replaceAll("'","&#39;");
+
+      const safeHttpUrl = (u) => {
+        try {
+          const url = new URL(String(u || ""), window.location.href);
+          if (url.protocol !== "https:" && url.protocol !== "http:") return "";
+          return url.toString();
+        } catch { return ""; }
+      };
+
+      const safeImageUrl = (u) => safeHttpUrl(u);
+
+      const uid = () => {
+        try {
+          const a = new Uint8Array(10);
+          crypto.getRandomValues(a);
+          return Array.from(a).map(x => x.toString(16).padStart(2,"0")).join("");
+        } catch {
+          return Math.random().toString(16).slice(2) + Date.now().toString(16);
+        }
+      };
+
+      const SS = {
+        get(k, fallback=null){
+          try { const v = sessionStorage.getItem(k); return v ? JSON.parse(v) : fallback; } catch { return fallback; }
+        },
+        set(k, v){
+          try { sessionStorage.setItem(k, JSON.stringify(v)); } catch {}
+        }
+      };
+      const LS = {
+        get(k, fallback=null){
+          try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : fallback; } catch { return fallback; }
+        },
+        set(k, v){
+          try { localStorage.setItem(k, JSON.stringify(v)); } catch {}
+        }
+      };
+
+      const parseUtm = () => {
+        const sp = new URLSearchParams(location.search);
+        const keys = ["utm_source","utm_medium","utm_campaign","utm_term","utm_content","gclid","fbclid"];
+        const utm = {};
+        for (const k of keys){
+          const v = sp.get(k);
+          if (v) utm[k] = v.slice(0, 180);
+        }
+        return utm;
+      };
+
+      /* =========================
+         STATE
+         ========================= */
+      const STORAGE_KEY = "lq_plenarius_vfinal_green";
+      const defaultState = () => ({
+        v: 3,
+        step: 0,
+        leadId: uid(),
+        utm: parseUtm(),
+        goalId: "",
+        ctxIds: [],
+        timing: "",
+        budget: "",
+        name: "",
+        city: "",
+        note: "",
+        consentLead: false,
+        consentCookies: false,
+        leadSent: false,
+        qual: "—",
+        ts: nowISO()
+      });
+
+      const state = Object.assign(defaultState(), SS.get(STORAGE_KEY, {}));
+      state.utm = Object.assign(parseUtm(), state.utm || {});
+      if (!state.leadId) state.leadId = uid();
+
+      /* =========================
+         ELEMENTS
+         ========================= */
+      const themeMeta = $("#themeColorMeta");
+      const ogImgMeta = $("#ogImageMeta");
+      const ogUrlMeta = $("#ogUrlMeta");
+
+      const brandInitials = $("#brandInitials");
+      const brandName = $("#brandName");
+      const brandTag = $("#brandTag");
+      const responseBadge = $("#responseBadge");
+      const policyLink = $("#policyLink");
+      const footerBrand = $("#footerBrand");
+      const yearEl = $("#year");
+
+      const themeBtn = $("#themeBtn");
+      const progFill = $("#progFill");
+
+      const stepEls = [$("#step0"), $("#step1"), $("#step2"), $("#step3")];
+
+      const heroHeadline = $("#heroHeadline");
+      const heroSub = $("#heroSub");
+      const heroKpis = $("#heroKpis");
+      const startBtn = $("#startBtn");
+      const directWaBtn = $("#directWaBtn");
+
+      const goalGroup = $("#goalGroup");
+      const ctxGroup = $("#ctxGroup");
+
+      const back1 = $("#back1");
+      const next1 = $("#next1");
+      const back2 = $("#back2");
+      const next2 = $("#next2");
+      const back3 = $("#back3");
+
+      const timingSel = $("#timingSel");
+      const budgetSel = $("#budgetSel");
+      const nameInp = $("#nameInp");
+      const cityInp = $("#cityInp");
+      const noteInp = $("#noteInp");
+
+      const consentLead = $("#consentLead");
+      const copyBtn = $("#copyBtn");
+      const waBtn = $("#waBtn");
+
+      const summaryBox = $("#summaryBox");
+      const msgBox = $("#msgBox");
+      const qualBadge = $("#qualBadge");
+      const gateHint = $("#gateHint");
+
+      const toast = $("#toast");
+      const toastTitle = $("#toastTitle");
+      const toastMsg = $("#toastMsg");
+      const toastDot = $("#toastDot");
+
+      const cookieBanner = $("#cookieBanner");
+      const cookieAccept = $("#cookieAccept");
+      const cookieDecline = $("#cookieDecline");
+
+      /* =========================
+         PERSIST
+         ========================= */
+      function persist(){
+        state.ts = nowISO();
+        SS.set(STORAGE_KEY, state);
+      }
+
+      let __raf = 0;
+      let __persistT = 0;
+
+      const softUpdate = (fn) => {
+        if (__raf) return;
+        __raf = requestAnimationFrame(() => {
+          __raf = 0;
+          try { fn(); } catch {}
+        });
+      };
+
+      const persistDebounced = () => {
+        clearTimeout(__persistT);
+        __persistT = setTimeout(() => persist(), 220);
+      };
+
+      /* =========================
+         APPLY DESIGN ASSETS
+         ========================= */
+      const applyDesignAssets = () => {
+        const heroUrl = safeImageUrl(CONFIG.design?.heroBgUrl);
+        const heroOpacity = Number(CONFIG.design?.heroBgOpacityStep0 ?? 0.18);
+        const onlyStep0 = !!CONFIG.design?.heroBgOnlyStep0;
+
+        document.documentElement.style.setProperty("--heroBgUrl", heroUrl ? `url("${heroUrl}")` : "none");
+        document.documentElement.style.setProperty("--heroBgOpacity", String(Math.max(0, Math.min(heroOpacity, 0.35))));
+
+        if (!heroUrl){
+          document.body.setAttribute("data-hero-bg", "off");
+        } else {
+          document.body.setAttribute("data-hero-bg", onlyStep0 ? "step0" : "all");
+        }
+
+        const logoUrl = safeImageUrl(CONFIG.design?.logoUrl);
+        const logoImg = document.getElementById("brandLogoImg");
+        if (logoImg && logoUrl){
+          logoImg.src = logoUrl;
+          document.documentElement.classList.add("has-logo");
+        } else {
+          document.documentElement.classList.remove("has-logo");
+          if (logoImg) logoImg.removeAttribute("src");
+        }
+
+        const heroImgUrl = safeImageUrl(CONFIG.design?.heroCardImageUrl);
+        const heroImg = document.getElementById("heroDroneImg");
+        if (heroImg && heroImgUrl){
+          heroImg.src = heroImgUrl;
+          heroImg.style.display = "block";
+        } else if (heroImg){
+          heroImg.style.display = "none";
+          heroImg.removeAttribute("src");
+        }
+
+        // ✅ OG image (melhora compartilhamento)
+        if (ogImgMeta){
+          ogImgMeta.setAttribute("content", heroImgUrl || "");
+        }
+      };
+
+      /* =========================
+         THEME
+         ========================= */
+      const setTheme = (t) => {
+        const theme = (t === "auto" || t === "dark" || t === "light") ? t : "auto";
+        document.documentElement.setAttribute("data-theme", theme);
+        const isLight = theme === "light" || (theme === "auto" && matchMedia("(prefers-color-scheme: light)").matches);
+        themeMeta.setAttribute("content", isLight ? CONFIG.ui.themeColorLight : CONFIG.ui.themeColorDark);
+        LS.set("lq_theme", theme);
+      };
+
+      const cycleTheme = () => {
+        const cur = document.documentElement.getAttribute("data-theme") || "auto";
+        const next = cur === "auto" ? "dark" : cur === "dark" ? "light" : "auto";
+        setTheme(next);
+        showToast("Tema", `Alterado para: ${next.toUpperCase()}`, "ok");
+      };
+
+      /* =========================
+         TRACKING (consentCookies)
+         ========================= */
+      const trackQueue = [];
+      const track = (name, data={}) => {
+        const evt = { name, data, ts: Date.now(), leadId: state.leadId, step: state.step, utm: state.utm };
+        trackQueue.push(evt);
+        try { if (typeof window.gtag === "function") window.gtag("event", name, data); } catch {}
+        try { if (window.fbq && typeof window.fbq === "function") window.fbq("trackCustom", name, data); } catch {}
+      };
+
+      const injectScript = (src) => new Promise((resolve, reject) => {
+        const s = document.createElement("script");
+        s.async = true;
+        s.src = src;
+        s.onload = resolve;
+        s.onerror = reject;
+        document.head.appendChild(s);
+      });
+
+      const initTrackingIfAllowed = async () => {
+        if (!state.consentCookies) return;
+
+        const gaId = String(CONFIG.tracking.ga4MeasurementId || "").trim();
+        const pxId = String(CONFIG.tracking.metaPixelId || "").trim();
+
+        if (gaId && !window.__ga4_inited){
+          try {
+            window.__ga4_inited = true;
+            await injectScript(`https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(gaId)}`);
+            window.dataLayer = window.dataLayer || [];
+            window.gtag = function(){ window.dataLayer.push(arguments); };
+            window.gtag("js", new Date());
+            window.gtag("config", gaId, { anonymize_ip: true });
+          } catch {}
+        }
+
+        if (pxId && !window.__px_inited){
+          try {
+            window.__px_inited = true;
+            !(function(f,b,e,v,n,t,s){
+              if(f.fbq) return; n=f.fbq=function(){ n.callMethod ? n.callMethod.apply(n,arguments) : n.queue.push(arguments) };
+              if(!f._fbq) f._fbq=n; n.push=n; n.loaded=!0; n.version="2.0"; n.queue=[];
+              t=b.createElement(e); t.async=!0; t.src=v; s=b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t,s);
+            })(window, document, "script", "https://connect.facebook.net/en_US/fbevents.js");
+            window.fbq("init", pxId);
+            window.fbq("track", "PageView");
+          } catch {}
+        }
+      };
+
+      const shouldShowCookieBanner = () => {
+        const gaId = String(CONFIG.tracking.ga4MeasurementId || "").trim();
+        const pxId = String(CONFIG.tracking.metaPixelId || "").trim();
+        if (!gaId && !pxId) return false;
+        const saved = LS.get("lq_cookie_consent", null);
+        return saved === null;
+      };
+
+      const setCookieConsent = (val) => {
+        state.consentCookies = !!val;
+        LS.set("lq_cookie_consent", !!val);
+        persist();
+        if (val) initTrackingIfAllowed();
+        cookieBanner.classList.remove("show");
+        showToast("Cookies", val ? "Aceito" : "Recusado", "ok");
+        track("cookie_consent", { value: val ? "accept" : "decline" });
+      };
+
+      /* =========================
+         TOAST
+         ========================= */
+      let toastTimer = null;
+      const showToast = (title, msg, kind="ok") => {
+        toastTitle.textContent = title;
+        toastMsg.textContent = msg;
+        toastDot.style.background = kind === "danger" ? `rgba(var(--danger), .95)` : `rgba(var(--brand), .95)`;
+        toast.classList.add("show");
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => toast.classList.remove("show"), 2600);
+      };
+
+      /* =========================
+         RENDER OPTIONS
+         ========================= */
+      const mkOption = ({ id, title, desc, icon }, { type }) => {
+        const el = document.createElement("div");
+        el.className = "option focus";
+        el.tabIndex = 0;
+        el.setAttribute("role", type === "radio" ? "radio" : "checkbox");
+        el.setAttribute("aria-checked", "false");
+        el.dataset.id = id;
+
+        el.innerHTML = `
+          <div class="opt-ic" aria-hidden="true">${escapeHtml(icon || "•")}</div>
+          <div style="min-width:0">
+            <div class="opt-tt">${escapeHtml(title)}</div>
+            <div class="opt-dd">${escapeHtml(desc)}</div>
+          </div>
+        `;
+        return el;
+      };
+
+      const renderGoals = () => {
+        goalGroup.innerHTML = "";
+        for (const g of CONFIG.steps.goals){
+          const el = mkOption(g, { type: "radio" });
+          if (state.goalId === g.id) el.setAttribute("aria-checked", "true");
+          goalGroup.appendChild(el);
+        }
+      };
+
+      const getCtxList = () => {
+        const map = CONFIG.steps.contextByGoal;
+        const ids = map && map[state.goalId];
+        if (!ids) return CONFIG.steps.context;
+        return ids.map(id => CONFIG.steps.context.find(x => x.id === id)).filter(Boolean);
+      };
+
+      const renderCtx = () => {
+        ctxGroup.innerHTML = "";
+        const list = getCtxList();
+
+        const allowed = new Set(list.map(x => x.id));
+        if (Array.isArray(state.ctxIds) && state.ctxIds.length){
+          const before = state.ctxIds.join("|");
+          state.ctxIds = state.ctxIds.filter(id => allowed.has(id));
+          const after = state.ctxIds.join("|");
+          if (before !== after) persistDebounced();
+        }
+
+        for (const c of list){
+          const el = mkOption(c, { type: "checkbox" });
+          if (state.ctxIds.includes(c.id)) el.setAttribute("aria-checked", "true");
+          ctxGroup.appendChild(el);
+        }
+
+        // ✅ micro progress
+        const cc = document.getElementById("ctxCount");
+        if (cc) cc.textContent = `Selecionados: ${state.ctxIds.length}`;
+
+        setNextEnabled();
+      };
+
+      const getGoal = () => CONFIG.steps.goals.find(x => x.id === state.goalId) || null;
+      const getCtx = () => state.ctxIds.map(id => CONFIG.steps.context.find(x => x.id === id)).filter(Boolean);
+
+      /* =========================
+         QUALIFICATION (Q/N/R)
+         ========================= */
+      const computeQual = () => {
+        const { timing, budget } = state;
+        if (!timing || !budget) return "—";
+
+        const isSoon = (timing === "7d" || timing === "30d");
+        const isMid  = (timing === "60d");
+        const isReady = (budget === "ready");
+        const isMaybe = (budget === "maybe");
+
+        if (isSoon && (isReady || isMaybe)) return "Q";
+        if (isMid && isMaybe) return "R";
+        if (timing === "later" || budget === "no") return "N";
+        return "N";
+      };
+
+      const renderQual = () => {
+        state.qual = computeQual();
+        const q = state.qual;
+
+        let label = "Qualificação: —";
+        if (q === "Q") label = "Qualificação: Q (libera WhatsApp)";
+        if (q === "N") label = "Qualificação: N (ainda não)";
+        if (q === "R") label = "Qualificação: R (zona cinza)";
+
+        qualBadge.textContent = label;
+
+        if (q === "Q"){
+          gateHint.textContent = "Liberado: você tem intenção real de matrícula. Atendimento tende a ser mais rápido.";
+        } else if (q === "R"){
+          gateHint.textContent = "Zona cinza: copie a mensagem para receber datas/valores e retome quando estiver mais decidido.";
+        } else if (q === "N"){
+          gateHint.textContent = "Por enquanto, o WhatsApp fica fechado para reduzir ruído. Copie a mensagem e salve (ou ajuste prazo/orçamento).";
+        } else {
+          gateHint.textContent = "Complete as escolhas para avaliarmos a melhor rota.";
+        }
+      };
+
+      /* =========================
+         MESSAGE
+         ========================= */
+      const labelTiming = (v) => ({
+        "7d":"Em até 7 dias",
+        "30d":"Em até 30 dias",
+        "60d":"Em até 60 dias",
+        "later":"Mais para frente / pesquisa"
+      }[v] || "—");
+
+      const labelBudget = (v) => ({
+        "ready":"Já tenho orçamento / decidido",
+        "maybe":"Tenho interesse, preciso alinhar valores",
+        "no":"Sem orçamento no momento"
+      }[v] || "—");
+
+      const buildMessage = () => {
+        const g = getGoal();
+        const ctx = getCtx();
+        const parts = [];
+
+        parts.push(`Olá! Vim pela landing do curso de Drone Agrícola (ID: ${state.leadId}).`);
+        parts.push("");
+        parts.push("Resumo rápido:");
+        parts.push(`- Objetivo: ${g ? g.title : "—"}`);
+        parts.push(`- Contexto: ${ctx.length ? ctx.map(x => x.title).join(", ") : "—"}`);
+        parts.push(`- Prazo: ${labelTiming(state.timing)}`);
+        parts.push(`- Momento: ${labelBudget(state.budget)}`);
+
+        if (state.name?.trim()) parts.push(`- Nome: ${state.name.trim().slice(0, 60)}`);
+        if (state.city?.trim()) parts.push(`- Cidade: ${state.city.trim().slice(0, 80)}`);
+        if (state.note?.trim()) parts.push(`- Observações: ${state.note.trim().slice(0, 420)}`);
+
+        const utmPairs = Object.entries(state.utm || {});
+        if (utmPairs.length){
+          parts.push("");
+          parts.push("Origem (UTM):");
+          for (const [k,v] of utmPairs){
+            parts.push(`- ${k}: ${String(v).slice(0, 160)}`);
+          }
+        }
+
+        parts.push("");
+        parts.push("Pode me passar turmas/datas/valores e próximos passos?");
+        return parts.join("\n");
+      };
+
+      const buildWaUrl = (msg) => {
+        const phone = String(CONFIG.whatsappE164 || "").replace(/\D+/g, "");
+        if (!phone) return "";
+        const url = `https://wa.me/${phone}?text=${encodeURIComponent(String(msg || ""))}`;
+        return safeHttpUrl(url);
+      };
+
+      const renderSummary = () => {
+        const g = getGoal();
+        const ctx = getCtx();
+        const s = [];
+
+        const kv = [
+          ["ID", state.leadId],
+          ["Objetivo", g ? g.title : "—"],
+          ["Contexto", ctx.length ? ctx.map(x => x.title).join(", ") : "—"],
+          ["Prazo", labelTiming(state.timing)],
+          ["Momento", labelBudget(state.budget)]
+        ];
+
+        s.push('<div class="kv">');
+        for (const [k,v] of kv){
+          s.push(`<b>${escapeHtml(k)}</b><span>${escapeHtml(v)}</span>`);
+        }
+        s.push("</div>");
+
+        summaryBox.innerHTML = s.join("");
+
+        const msg = buildMessage();
+        msgBox.textContent = msg;
+
+        const canCopy = !!state.goalId && state.ctxIds.length > 0 && !!state.timing && !!state.budget;
+        copyBtn.disabled = !canCopy;
+
+        const allowWa = CONFIG.qualification.openWhatsAppFor.includes(state.qual);
+        waBtn.disabled = !(canCopy && allowWa);
+
+        const waUrl = buildWaUrl(msg);
+        const ns = $("#noscriptWa");
+        if (ns) ns.href = waUrl || "#";
+      };
+
+      /* =========================
+         LEAD CAPTURE (LGPD gated)
+         ========================= */
+      const sendLead = async (reason) => {
+        if (!CONFIG.leadCapture.enabled) return { ok: false, skipped: "disabled" };
+        if (!state.consentLead) return { ok: false, skipped: "no_consent" };
+        if (!Array.isArray(CONFIG.leadCapture.targets) || CONFIG.leadCapture.targets.length === 0) return { ok: false, skipped: "no_targets" };
+
+        const payload = {
+          leadId: state.leadId,
+          ts: nowISO(),
+          reason: String(reason || "unknown"),
+          qual: state.qual,
+          goalId: state.goalId,
+          ctxIds: state.ctxIds.slice(0, 20),
+          timing: state.timing,
+          budget: state.budget,
+          name: (state.name || "").slice(0, 80),
+          city: (state.city || "").slice(0, 120),
+          note: (state.note || "").slice(0, 700),
+          utm: state.utm || {},
+          message: buildMessage()
+        };
+
+        const timeoutMs = clamp(Number(CONFIG.leadCapture.timeoutMs || 4500), 1200, 12000);
+        const results = [];
+
+        for (const t of CONFIG.leadCapture.targets){
+          const url = safeHttpUrl(t?.url || "");
+          if (!url) continue;
+
+          let ok = false;
+          let status = 0;
+          let method = "beacon";
+
+          try {
+            if (navigator.sendBeacon){
+              const blob = new Blob([JSON.stringify(payload)], { type: "application/json" });
+              ok = navigator.sendBeacon(url, blob);
+              status = ok ? 200 : 0;
+            } else {
+              method = "fetch";
+              throw new Error("no-beacon");
+            }
+          } catch {
+            method = "fetch";
+            const ctrl = new AbortController();
+            const timer = setTimeout(() => ctrl.abort(), timeoutMs);
+            try {
+              const res = await fetch(url, {
+                method: "POST",
+                headers: { "content-type": "application/json" },
+                body: JSON.stringify(payload),
+                signal: ctrl.signal,
+                keepalive: true
+              });
+              ok = !!res.ok;
+              status = res.status || 0;
+            } catch {
+              ok = false;
+              status = 0;
+            } finally {
+              clearTimeout(timer);
+            }
+          }
+
+          results.push({ url, ok, status, method });
+        }
+
+        const anyOk = results.some(r => r.ok);
+        const allOk = results.length ? results.every(r => r.ok) : false;
+
+        track("lead_send_result", { anyOk, allOk, reason: String(reason || ""), qual: state.qual });
+        return { ok: anyOk, allOk, results };
+      };
+
+      const maybeSendLeadOnce = async (reason) => {
+        if (state.leadSent) return { ok: true, skipped: "already_sent" };
+        const res = await sendLead(reason);
+        if (res && res.ok){
+          state.leadSent = true;
+          persist();
+        }
+        return res;
+      };
+
+      /* =========================
+         STEP NAV / RENDER
+         ========================= */
+      const setStep = (n) => {
+        const next = clamp(Number(n || 0), 0, 3);
+        state.step = next;
+        document.body.setAttribute("data-step", String(next));
+        persist();
+
+        for (let i=0;i<stepEls.length;i++){
+          const on = i === next;
+          stepEls[i].setAttribute("aria-hidden", on ? "false" : "true");
+        }
+
+        // ✅ foco no step (A11y + premium)
+        try{
+          const target = stepEls[next];
+          target.setAttribute("tabindex","-1");
+          target.focus({ preventScroll: true });
+        } catch {}
+
+        const pct = (next / 3) * 100;
+        progFill.style.width = `${pct}%`;
+
+        track("step_view", { step: next });
+
+        if (next === 1) renderGoals();
+        if (next === 2) renderCtx();
+        if (next === 3){
+          renderQual();
+          renderSummary();
+        }
+
+        try { window.scrollTo({ top: 0, behavior: "smooth" }); } catch { window.scrollTo(0,0); }
+      };
+
+      const setNextEnabled = () => {
+        next1.disabled = !state.goalId;
+        next2.disabled = !(state.ctxIds && state.ctxIds.length > 0);
+      };
+
+      /* =========================
+         A11Y: keyboard toggles
+         ========================= */
+      const toggleRadio = (container, id) => {
+        state.goalId = id;
+        $$(".option", container).forEach(el => {
+          el.setAttribute("aria-checked", el.dataset.id === id ? "true" : "false");
+        });
+
+        // ✅ “Saiba mais” dinâmico
+        const more = document.getElementById("goalMore");
+        if (more){
+          const map = {
+            piloto: "Ideal para começar do zero com segurança + base técnica + rotina de operação (inclusive para quem ainda não tem drone).",
+            pulv: "Foco em aplicação eficiente: preparo de calda, calibração, boas práticas e operação no campo com segurança e conformidade.",
+            recic: "Para quem já opera e quer aumentar produtividade: checklist profissional, melhoria de rotina e padronização.",
+            manut: "Cuidados, ajustes e diagnóstico para aumentar vida útil do equipamento e reduzir paradas."
+          };
+          more.textContent = map[state.goalId] || "";
+        }
+
+        setNextEnabled();
+        persist();
+        track("select_goal", { id });
+
+        // quando muda objetivo, Step 2 pode filtrar opções
+        renderCtx();
+      };
+
+      const toggleCheckbox = (container, id) => {
+        const idx = state.ctxIds.indexOf(id);
+        if (idx >= 0) state.ctxIds.splice(idx, 1);
+        else state.ctxIds.push(id);
+
+        $$(".option", container).forEach(el => {
+          const on = state.ctxIds.includes(el.dataset.id);
+          el.setAttribute("aria-checked", on ? "true" : "false");
+        });
+
+        // ✅ micro progress
+        const cc = document.getElementById("ctxCount");
+        if (cc) cc.textContent = `Selecionados: ${state.ctxIds.length}`;
+
+        setNextEnabled();
+        persist();
+        track("toggle_ctx", { id, on: idx < 0 });
+      };
+
+      const onRadioArrows = (container) => (ev) => {
+        const keys = ["ArrowDown","ArrowRight","ArrowUp","ArrowLeft"];
+        if (!keys.includes(ev.key)) return;
+
+        const items = $$(".option", container);
+        if (!items.length) return;
+
+        ev.preventDefault();
+        const cur = items.findIndex(x => x.dataset.id === state.goalId);
+        const dir = (ev.key === "ArrowDown" || ev.key === "ArrowRight") ? 1 : -1;
+        const next = items[(Math.max(0, cur) + dir + items.length) % items.length];
+
+        if (next){
+          next.focus();
+          toggleRadio(container, next.dataset.id);
+        }
+      };
+
+      /* =========================
+         INIT UI COPY + SEO
+         ========================= */
+      const initCopy = () => {
+        brandInitials.textContent = CONFIG.brand.initials || "—";
+        brandName.textContent = CONFIG.brand.name || "—";
+        brandTag.textContent = CONFIG.brand.tagline || "";
+        responseBadge.textContent = CONFIG.brand.responseBadge || "—";
+        footerBrand.textContent = CONFIG.brand.name || "—";
+        yearEl.textContent = String(new Date().getFullYear());
+
+        const url = safeHttpUrl(CONFIG.brand.policyUrl || "");
+        policyLink.href = url || "#";
+        policyLink.style.pointerEvents = url ? "auto" : "none";
+        policyLink.style.opacity = url ? "1" : ".6";
+
+        // ✅ canonical automático
+        const canon = document.querySelector('link[rel="canonical"]');
+        if (canon){
+          const c = safeHttpUrl(CONFIG.brand.canonical || "");
+          canon.href = c || (location.origin + location.pathname);
+        }
+        if (ogUrlMeta){
+          const canonUrl = (canon && canon.href) ? canon.href : (location.origin + location.pathname);
+          ogUrlMeta.setAttribute("content", canonUrl);
+        }
+
+        const sp = new URLSearchParams(location.search);
+        const useB = sp.get(CONFIG.hero.abParam) === "1";
+        heroHeadline.textContent = useB ? CONFIG.hero.headlineB : CONFIG.hero.headlineA;
+        heroSub.textContent = CONFIG.hero.sub;
+
+        heroKpis.innerHTML = "";
+        for (const k of (CONFIG.hero.kpis || [])){
+          const div = document.createElement("div");
+          div.className = "kpi";
+          div.textContent = k;
+          heroKpis.appendChild(div);
+        }
+
+        if (!CONFIG.directWhatsAppAllowed) directWaBtn.style.display = "none";
+      };
+
+      /* =========================
+         EVENTS
+         ========================= */
+      const onOptionClick = (container, mode) => (ev) => {
+        const el = ev.target.closest(".option");
+        if (!el) return;
+        const id = el.dataset.id;
+        if (!id) return;
+        if (mode === "radio") toggleRadio(container, id);
+        else toggleCheckbox(container, id);
+      };
+
+      const onOptionKey = (container, mode) => (ev) => {
+        const isEnter = ev.key === "Enter";
+        const isSpace = ev.key === " " || ev.key === "Spacebar";
+        if (!(isEnter || isSpace)) return;
+        const el = ev.target.closest(".option");
+        if (!el) return;
+        ev.preventDefault();
+        const id = el.dataset.id;
+        if (!id) return;
+        if (mode === "radio") toggleRadio(container, id);
+        else toggleCheckbox(container, id);
+      };
+
+      const copyText = async (txt) => {
+        const s = String(txt || "");
+        try {
+          await navigator.clipboard.writeText(s);
+          return true;
+        } catch {
+          try {
+            const ta = document.createElement("textarea");
+            ta.value = s;
+            ta.style.position = "fixed";
+            ta.style.left = "-9999px";
+            document.body.appendChild(ta);
+            ta.select();
+            const ok = document.execCommand("copy");
+            document.body.removeChild(ta);
+            return !!ok;
+          } catch {
+            return false;
+          }
+        }
+      };
+
+      /* =========================
+         BOOT
+         ========================= */
+      const boot = async () => {
+        const savedTheme = LS.get("lq_theme", null);
+        setTheme(savedTheme || CONFIG.ui.themeDefault || "auto");
+        themeBtn.addEventListener("click", cycleTheme);
+
+        initCopy();
+        applyDesignAssets();
+
+        const savedCookie = LS.get("lq_cookie_consent", null);
+        if (savedCookie !== null){
+          state.consentCookies = !!savedCookie;
+          persist();
+          if (state.consentCookies) initTrackingIfAllowed();
+        } else if (shouldShowCookieBanner()){
+          cookieBanner.classList.add("show");
+        }
+
+        cookieAccept.addEventListener("click", () => setCookieConsent(true));
+        cookieDecline.addEventListener("click", () => setCookieConsent(false));
+
+        startBtn.addEventListener("click", () => setStep(1));
+        directWaBtn.addEventListener("click", () => {
+          const msg = "Olá! Quero informações sobre o curso de Drone Agrícola + Pulverização.";
+          const wa = buildWaUrl(msg);
+          if (!wa) return showToast("WhatsApp", "Configure o número em CONFIG.whatsappE164", "danger");
+          window.location.href = wa;
+          track("wa_direct", {});
+        });
+
+        goalGroup.addEventListener("click", onOptionClick(goalGroup, "radio"));
+        goalGroup.addEventListener("keydown", onOptionKey(goalGroup, "radio"));
+        goalGroup.addEventListener("keydown", onRadioArrows(goalGroup));
+
+        ctxGroup.addEventListener("click", onOptionClick(ctxGroup, "check"));
+        ctxGroup.addEventListener("keydown", onOptionKey(ctxGroup, "check"));
+
+        back1.addEventListener("click", () => setStep(0));
+        back2.addEventListener("click", () => setStep(1));
+        back3.addEventListener("click", () => setStep(2));
+
+        next1.addEventListener("click", () => setStep(2));
+        next2.addEventListener("click", () => setStep(3));
+
+        timingSel.value = state.timing || "";
+        budgetSel.value = state.budget || "";
+        nameInp.value = state.name || "";
+        cityInp.value = state.city || "";
+        noteInp.value = state.note || "";
+        consentLead.checked = !!state.consentLead;
+
+        const recompute = () => {
+          state.timing = timingSel.value || "";
+          state.budget = budgetSel.value || "";
+          state.name = nameInp.value || "";
+          state.city = cityInp.value || "";
+          state.note = noteInp.value || "";
+          state.consentLead = !!consentLead.checked;
+
+          softUpdate(() => { renderQual(); renderSummary(); });
+          persistDebounced();
+        };
+
+        timingSel.addEventListener("change", recompute);
+        budgetSel.addEventListener("change", recompute);
+        nameInp.addEventListener("input", recompute);
+        cityInp.addEventListener("input", recompute);
+        noteInp.addEventListener("input", recompute);
+        consentLead.addEventListener("change", recompute);
+
+        copyBtn.addEventListener("click", async () => {
+          const msg = buildMessage();
+          const ok = await copyText(msg);
+          if (ok){
+            showToast("Copiado", "Mensagem copiada para a área de transferência.", "ok");
+            track("copy_message", { qual: state.qual });
+            await maybeSendLeadOnce("copy");
+          } else {
+            showToast("Falha", "Não foi possível copiar. Selecione e copie manualmente.", "danger");
+          }
+        });
+
+        waBtn.addEventListener("click", async () => {
+          const msg = buildMessage();
+          const wa = buildWaUrl(msg);
+          if (!wa) return showToast("WhatsApp", "Configure o número em CONFIG.whatsappE164", "danger");
+
+          await maybeSendLeadOnce("open_whatsapp");
+          track("wa_open", { qual: state.qual });
+          window.location.href = wa;
+        });
+
+        renderGoals();
+        renderCtx();
+        setNextEnabled();
+        renderQual();
+        renderSummary();
+
+        setStep(state.step || 0);
+      };
+
+      boot();
+    })();
+  </script>
+</body>
+</html>
