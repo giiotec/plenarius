@@ -10,36 +10,35 @@
   <meta name="color-scheme" content="dark light" />
 
   <title>Curso Piloto de Drone Agrícola + Pulverização | Escola Técnica Plenarius</title>
-  <meta name="description" content="Briefing guiado em ~60s → mensagem pronta para atendimento no WhatsApp, com UTMs e ID. WhatsApp liberado apenas para leads qualificados." />
+  <meta name="description" content="Briefing guiado em ~60s → WhatsApp com mensagem pronta, rota de atendimento, UTMs e ID do lead." />
 
-  <link rel="canonical" href="" />
+  <!-- ✅ SEO: nunca deixar vazio (override opcional via JS/CONFIG) -->
+  <link rel="canonical" href="https://escolaplenarius.com.br/piloto-de-drone-agricola/" />
   <meta property="og:title" content="Curso de Drone Agrícola | Plenarius" />
-  <meta property="og:description" content="Pré-qualificação rápida → WhatsApp com mensagem pronta + origem do anúncio (UTM) + ID do lead." />
+  <meta property="og:description" content="Pré-qualificação rápida → WhatsApp com mensagem pronta + rota de atendimento + origem do anúncio (UTM) + ID." />
   <meta property="og:type" content="website" />
-  <meta property="og:image" content="" id="ogImageMeta" />
-  <meta property="og:url" content="" id="ogUrlMeta" />
+  <meta property="og:image" content="https://escolaplenarius.com.br/wp-content/uploads/2024/09/arteplenarius14-1-2048x819.png" id="ogImageMeta" />
+  <meta property="og:url" content="https://escolaplenarius.com.br/piloto-de-drone-agricola/" id="ogUrlMeta" />
 
+  <!-- ✅ dependência existente -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
   <style>
   /* =========================================================
-    Landing Qualifica — Final Premium (single-file)
-    - Tokens consistentes (inclui aliases p/ evitar regressões)
-    - Gate LGPD: nenhum envio sem consentLead
-    - Cookie banner: GA4/Meta só com consentCookies
-    - Funil Step 0→1→2→3 + Q/N/R (WhatsApp apenas Q)
-    - A11y + performance + hardening
-    - Upgrades incorporados:
-      ✅ HTML válido (</head> + 1 body)
-      ✅ Trust Strip (Step 0)
-      ✅ “Saiba mais” dinâmico (Step 1) via #goalMore
-      ✅ Micro progress “Selecionados: X” (Step 2) via #ctxCount
-      ✅ Foco no step ao navegar (A11y + premium)
-      ✅ Sticky actions no mobile (CTA sempre visível)
-      ✅ Canonical + OG:image/og:url dinâmicos
-      ✅ “O que acontece depois” (Step 3) no card de resumo
+    Landing Qualifica — Premium (single-file)
+    Upgrades incorporados:
+    ✅ WhatsApp roteado (always_open/gate) + código de rota na mensagem
+    ✅ Step 3: só 2 decisões + campos opcionais em accordion
+    ✅ Step 0: CTA + 3 bullets acima da dobra; trust/how em details (colapsa no mobile)
+    ✅ Compliance: “Mercado e oportunidade” + disclaimer forte
+    ✅ SEO: canonical/og preenchidos no HTML
+    ✅ Noscript: WhatsApp funcional
+    ✅ A11y: skip link visível no foco; foco no step ao navegar
+    ✅ Perf: blur adaptativo + hero bg mobile
+    ✅ Growth: eventos de funil + tempo
+    ✅ Privacidade: não persistir campos livres em storage
   ========================================================= */
 
   :root{
@@ -66,6 +65,9 @@
     --font: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
     --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 
+    /* ✅ perf: blur control */
+    --blur: 10px;
+
     /* Neutros (DARK default) */
     --bg: 6 9 11;
     --surface: 14 18 20;
@@ -76,9 +78,9 @@
     --stroke: 185 205 215;
 
     /* Acentos (DEFAULT: agro premium) */
-    --brand: 34 197 94;      /* emerald */
-    --brand2: 163 230 53;    /* lime */
-    --brand3: 16 185 129;    /* teal depth */
+    --brand: 34 197 94;
+    --brand2: 163 230 53;
+    --brand3: 16 185 129;
 
     --danger: 248 113 113;
     --warn: 251 191 36;
@@ -106,7 +108,7 @@
 
     --onBrand: 5 10 8;
 
-    --shadow1: 0 14px 34px rgba(0, 0, 0, 0.836);
+    --shadow1: 0 14px 34px rgba(0,0,0,.44);
     --shadow2: 0 26px 70px rgba(0,0,0,.38);
     --shadowBrand: 0 18px 46px rgba(var(--brand), .18);
 
@@ -165,8 +167,8 @@
       --strokeA: rgba(var(--border), .22);
       --strokeB: rgba(var(--border), .30);
 
-      --shadow1: 0 14px 34px rgba(2, 6, 23, .10);
-      --shadow2: 0 30px 80px rgba(2, 6, 23, .14);
+      --shadow1: 0 14px 34px rgba(2,6,23,.10);
+      --shadow2: 0 30px 80px rgba(2,6,23,.14);
       --shadowBrand: 0 18px 46px rgba(var(--brand), .12);
 
       color-scheme: light;
@@ -186,8 +188,8 @@
     --strokeA: rgba(var(--border), .22);
     --strokeB: rgba(var(--border), .30);
 
-    --shadow1: 0 14px 34px rgba(2, 6, 23, .10);
-    --shadow2: 0 30px 80px rgba(2, 6, 23, .14);
+    --shadow1: 0 14px 34px rgba(2,6,23,.10);
+    --shadow2: 0 30px 80px rgba(2,6,23,.14);
     --shadowBrand: 0 18px 46px rgba(var(--brand), .12);
 
     color-scheme: light;
@@ -210,11 +212,32 @@
   button, a{ -webkit-tap-highlight-color: transparent; }
   ::selection{ background: rgba(var(--brand), .22); }
 
-  .sr{ position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+  .sr{
+    position:absolute; width:1px; height:1px;
+    padding:0; margin:-1px; overflow:hidden;
+    clip:rect(0,0,0,0); white-space:nowrap; border:0;
+  }
   .focus:focus-visible{
     outline: 3px solid rgba(var(--focus), .9);
     outline-offset: 3px;
     border-radius: 10px;
+  }
+
+  /* ✅ A11y: skip link visível no foco */
+  a.sr:focus, a.sr:focus-visible{
+    position: fixed;
+    top: 12px;
+    left: 12px;
+    width: auto;
+    height: auto;
+    margin: 0;
+    padding: 10px 12px;
+    background: rgba(var(--surface), .95);
+    border: 1px solid var(--strokeB);
+    border-radius: 12px;
+    clip: auto;
+    white-space: normal;
+    z-index: 9999;
   }
 
   .bg-wrap{
@@ -258,8 +281,8 @@
     position: sticky; top: 0; z-index: 50;
     padding-top: var(--safeTop);
     background: linear-gradient(180deg, rgba(var(--bg), .92), rgba(var(--bg), .70));
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(var(--blur));
+    -webkit-backdrop-filter: blur(var(--blur));
     border-bottom: 1px solid var(--strokeA);
   }
   .topbar{
@@ -348,8 +371,8 @@
     background: var(--glass);
     border-radius: var(--r24);
     box-shadow: var(--shadow1);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(var(--blur));
+    -webkit-backdrop-filter: blur(var(--blur));
     overflow: hidden;
   }
   .card::before{
@@ -396,6 +419,10 @@
     background: rgba(var(--surface2), .62);
     font-size: 12px;
     color: rgba(var(--text), .92);
+  }
+  /* ✅ Step 0: 3 bullets acima da dobra (mobile) */
+  @media (max-width: 560px){
+    .kpi.kpi-more{ display:none; }
   }
 
   .hero-drone{
@@ -478,7 +505,9 @@
     transition: transform var(--dur1) var(--ease), border-color var(--dur1) var(--ease), background var(--dur1) var(--ease);
     user-select:none;
   }
-  .option:hover{ transform: translateY(-1px); border-color: rgba(var(--border), .34); }
+  @media (hover:hover) and (pointer:fine){
+    .option:hover{ transform: translateY(-1px); border-color: rgba(var(--border), .34); }
+  }
   .option[aria-checked="true"]{
     border-color: rgba(var(--brand), .54);
     box-shadow: 0 20px 54px rgba(0,0,0,.22);
@@ -586,8 +615,8 @@
     border: 1px solid var(--strokeB);
     background: rgba(var(--surface), .86);
     box-shadow: var(--shadow2);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(var(--blur));
+    -webkit-backdrop-filter: blur(var(--blur));
     padding: 12px 12px;
     display:flex; align-items:center; gap: 10px;
   }
@@ -613,8 +642,8 @@
     border: 1px solid var(--strokeA);
     background: rgba(var(--surface), .88);
     box-shadow: var(--shadow2);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(var(--blur));
+    -webkit-backdrop-filter: blur(var(--blur));
     padding: 14px;
     display:flex; gap: 12px; flex-wrap: wrap; align-items:center; justify-content: space-between;
   }
@@ -650,6 +679,44 @@
       z-index: 5;
     }
   }
+
+  /* ✅ Accordion (Step 0 + Step 3) */
+  .acc{
+    margin-top: 12px;
+    border: 1px solid var(--strokeA);
+    border-radius: 18px;
+    background: rgba(var(--surface2), .44);
+    overflow: hidden;
+  }
+  .acc > summary{
+    list-style: none;
+    cursor: pointer;
+    padding: 12px 12px;
+    font-weight: 750;
+    display:flex;
+    align-items:center;
+    justify-content: space-between;
+    gap: 10px;
+  }
+  .acc > summary::-webkit-details-marker{ display:none; }
+  .acc > summary::after{
+    content: "＋";
+    font-weight: 900;
+    opacity: .8;
+  }
+  .acc[open] > summary::after{ content: "—"; }
+  .acc .acc-body{ padding: 0 12px 12px; }
+
+  /* ✅ Light: blur pode “misturar”; deixa a heurística cuidar, mas garante ok */
+  @media (prefers-color-scheme: light){
+    html[data-theme="auto"] header,
+    html[data-theme="auto"] .card,
+    html[data-theme="auto"] .toast .box,
+    html[data-theme="auto"] .cookie .box{
+      backdrop-filter: blur(var(--blur));
+      -webkit-backdrop-filter: blur(var(--blur));
+    }
+  }
   </style>
 </head>
 
@@ -662,7 +729,9 @@
     <div class="wrap" style="padding-top:24px;">
       <div class="card pad">
         Para usar o briefing guiado, ative o JavaScript. Se preferir, fale direto no WhatsApp:
-        <a class="focus" id="noscriptWa" href="#"
+        <a class="focus" id="noscriptWa"
+           href="https://wa.me/5515997996150?text=Ol%C3%A1!%20Quero%20informa%C3%A7%C3%B5es%20sobre%20o%20curso%20de%20Drone%20Agr%C3%ADcola%20%2B%20Pulveriza%C3%A7%C3%A3o."
+           rel="noopener nofollow" target="_blank"
            style="display:inline-block;margin-top:10px;color:rgb(var(--brand));text-decoration:underline;">
           Abrir WhatsApp
         </a>
@@ -687,7 +756,7 @@
       <div style="display:flex;gap:10px;align-items:center;">
         <div class="pill" title="Status de resposta">
           <span class="dot" aria-hidden="true"></span>
-          <span id="responseBadge">Respondo hoje</span>
+          <span id="responseBadge">Resposta hoje</span>
         </div>
         <button class="btn btn-ghost focus" id="themeBtn" type="button" aria-label="Alternar tema">
           Tema
@@ -713,38 +782,11 @@
             Assim a coordenação já te responde com <strong>turmas, valores e o caminho ideal</strong> — sem enrolação.
           </p>
 
-          <!-- ✅ Trust Strip (reduz objeção antes do quiz) -->
-          <div class="summary" id="trustStrip" style="margin-top:12px;">
-            <div class="kv" style="gap:10px;">
-              <b>Credibilidade</b><span>26 anos formando profissionais no agro (Plenarius).</span>
-              <b>Prática de verdade</b><span>2 modelos de drone + pulverização no campo.</span>
-              <b>Incluso</b><span>Hospedagem + almoço (churrasco) nos dias de prática.</span>
-              <b>Conformidade</b><span>NR-31, legislação vigente e EPIs.</span>
-              <b>Bônus</b><span>Mapeamento 3D + índices vegetativos.</span>
-            </div>
-          </div>
+          <!-- ✅ 3 bullets acima da dobra (mobile) -->
+          <div class="kpis" id="heroKpis" aria-label="Benefícios rápidos"></div>
 
-          <div class="kpis" id="heroKpis">
-            <div class="kpi">Briefing: ~60s</div>
-            <div class="kpi"><strong>Bônus:</strong> Mapeamento 3D</div>
-            <div class="kpi">Prática + pulverização</div>
-            <div class="kpi">Suporte antes/durante/depois</div>
-          </div>
-
-          <img id="heroDroneImg" class="hero-drone" alt="Drone agrícola em operação no campo" loading="lazy" decoding="async" />
-
-          <!-- Conteúdo/valor (mantido) -->
-          <div class="summary" style="margin-top:12px;">
-            <div class="kv" style="gap:10px;">
-              <b>Conteúdo do curso</b>
-              <span>Preparo de calda • EPI’s • NR-31 • Legislação • Manutenção • Índices vegetativos • Networking</span>
-
-              <b>Potencial de ganhos</b>
-              <span>Faixa divulgada no anúncio: R$ 7.000 a R$ 14.000 <small>(varia por região, experiência e demanda)</small></span>
-            </div>
-          </div>
-
-          <div class="actions">
+          <!-- ✅ CTA vem cedo -->
+          <div class="actions" style="margin-top:12px;">
             <button class="btn btn-primary focus" id="startBtn" type="button">
               Quero ver turmas e valores
               <span aria-hidden="true">→</span>
@@ -754,39 +796,75 @@
             </button>
           </div>
 
+          <!-- ✅ Trust strip colapsável (reduz scroll no mobile) -->
+          <details class="acc" id="trustDetails" open data-collapse-mobile="true">
+            <summary class="focus">Ver o que está incluso</summary>
+            <div class="acc-body">
+              <div class="summary" id="trustStrip" style="margin-top:8px;">
+                <div class="kv" style="gap:10px;">
+                  <b>Credibilidade</b><span>26 anos formando profissionais no agro (Plenarius).</span>
+                  <b>Prática de verdade</b><span>2 modelos de drone + pulverização no campo.</span>
+                  <b>Incluso</b><span>Hospedagem + almoço (churrasco) nos dias de prática.</span>
+                  <b>Conformidade</b><span>NR-31, legislação vigente e EPIs.</span>
+                  <b>Bônus</b><span>Mapeamento 3D + índices vegetativos.</span>
+                </div>
+              </div>
+            </div>
+          </details>
+
+          <img id="heroDroneImg" class="hero-drone" alt="Drone agrícola em operação no campo" loading="lazy" decoding="async" />
+
+          <!-- ✅ Reframing + disclaimer forte -->
+          <div class="summary" style="margin-top:12px;">
+            <div class="kv" style="gap:10px;">
+              <b>Conteúdo do curso</b>
+              <span>Preparo de calda • EPI’s • NR-31 • Legislação • Manutenção • Índices vegetativos • Networking</span>
+
+              <b>Mercado e oportunidade</b>
+              <span>
+                Faixas citadas em anúncios do setor: R$ 7.000 a R$ 14.000
+                <small><strong>(não é promessa)</strong> Varia por região, experiência, demanda e perfil de serviço.</small>
+              </span>
+            </div>
+          </div>
+
+          <p class="note" style="margin-top:10px;">
+            <strong>Importante:</strong> não garantimos renda. O curso forma para operação segura e conforme legislação —
+            resultados dependem do aluno e do mercado.
+          </p>
+
           <p class="hint" id="heroHint">
             <strong>Privacidade:</strong> suas respostas ficam no seu dispositivo durante o briefing.
-            Só salvamos e enviamos se você autorizar no final (LGPD). Cookies de tracking (GA4/Meta) só com consentimento.
+            Só enviamos seus dados para a escola se você autorizar no final (LGPD).
+            Cookies de tracking (GA4/Meta) só carregam com consentimento.
           </p>
         </div>
 
         <div class="card pad">
-          <div class="step-title">
-            <div>
-              <div class="badge"><strong>Como funciona</strong> (rápido e objetivo)</div>
+          <!-- ✅ Como funciona colapsável no mobile -->
+          <details class="acc" id="howDetails" open data-collapse-mobile="true" style="margin-top:0;">
+            <summary class="focus">Como funciona (rápido e objetivo)</summary>
+            <div class="acc-body">
+              <div class="divider" style="margin-top:8px;"></div>
+
+              <div class="summary">
+                <div class="kv">
+                  <b>1) Seu objetivo</b><span>Define o caminho (iniciante, pulverização, reciclagem, manutenção).</span>
+                  <b>2) Seu contexto</b><span>Se já tem drone, se quer prestar serviço, se precisa de certificado, etc.</span>
+                  <b>3) Seu momento</b><span>Prazo e intenção — pra te mandar a turma e condição mais coerente.</span>
+                  <b>4) Resumo pronto</b><span>Mensagem organizada para WhatsApp (com ID + origem do anúncio).</span>
+                </div>
+              </div>
+
+              <p class="note">
+                <strong>Por que isso ajuda você?</strong> Evita ida e volta no WhatsApp e você já recebe orientação clara com base no que precisa.
+              </p>
+
+              <p class="note" style="margin-top:10px;">
+                <strong>Por que isso ajuda a escola?</strong> Atendimento mais rápido e preciso — e você chega com o contexto certo.
+              </p>
             </div>
-          </div>
-
-          <div class="divider"></div>
-
-          <div class="summary">
-            <div class="kv">
-              <b>1) Seu objetivo</b><span>Define o caminho (iniciante, pulverização, reciclagem, manutenção).</span>
-              <b>2) Seu contexto</b><span>Se já tem drone, se quer prestar serviço, se precisa de certificado, etc.</span>
-              <b>3) Seu momento</b><span>Prazo e intenção — pra te mandar a turma e condição mais coerente.</span>
-              <b>4) Resumo pronto</b><span>Mensagem organizada para WhatsApp (com ID + origem do anúncio).</span>
-            </div>
-          </div>
-
-          <p class="note">
-            <strong>Por que isso ajuda você?</strong> Você evita ida e volta no WhatsApp e já recebe uma orientação clara
-            com base no que realmente precisa.
-          </p>
-
-          <p class="note" style="margin-top:10px;">
-            <strong>Por que isso ajuda a escola?</strong> O atendimento fica mais rápido e preciso —
-            e você é respondido com prioridade quando está pronto(a) para avançar.
-          </p>
+          </details>
         </div>
       </div>
     </section>
@@ -806,7 +884,6 @@
 
         <div class="optgrid" role="radiogroup" aria-label="Objetivo principal" id="goalGroup"></div>
 
-        <!-- ✅ “Saiba mais” dinâmico (sem mexer na seleção) -->
         <div class="note" id="goalMore" aria-live="polite" style="margin-top:10px;"></div>
 
         <div class="row">
@@ -828,7 +905,6 @@
             <p class="lede" style="margin:6px 0 0;">
               Pode marcar mais de um. As opções se adaptam ao seu objetivo.
             </p>
-            <!-- ✅ micro progress -->
             <p class="hint" id="ctxCount">Selecionados: 0</p>
           </div>
         </div>
@@ -851,9 +927,9 @@
           <div class="step-title">
             <div>
               <div class="badge">Passo 3/3</div>
-              <h2 style="margin:8px 0 0; font-size:18px; letter-spacing:-.01em;">Só mais 2 detalhes (pra te responder certo)</h2>
+              <h2 style="margin:8px 0 0; font-size:18px; letter-spacing:-.01em;">Só 2 decisões rápidas (e pronto)</h2>
               <p class="lede" style="margin:6px 0 0;">
-                Isso define a melhor rota de atendimento e se liberamos o WhatsApp automaticamente.
+                Isso define a melhor rota de atendimento. Você pode adicionar detalhes se quiser.
               </p>
             </div>
             <div class="badge" id="qualBadge">Status: —</div>
@@ -876,15 +952,21 @@
             <option value="no">Ainda sem orçamento (quero entender primeiro)</option>
           </select>
 
-          <label for="nameInp">Nome (opcional)</label>
-          <input class="input focus" id="nameInp" type="text" inputmode="text" autocomplete="name" placeholder="Seu nome" />
+          <!-- ✅ campos opcionais em accordion -->
+          <details class="acc" id="moreDetails">
+            <summary class="focus">Adicionar detalhes (opcional)</summary>
+            <div class="acc-body">
+              <label for="nameInp">Nome (opcional)</label>
+              <input class="input focus" id="nameInp" type="text" inputmode="text" autocomplete="name" placeholder="Seu nome" />
 
-          <label for="cityInp">Cidade/UF (opcional)</label>
-          <input class="input focus" id="cityInp" type="text" inputmode="text" autocomplete="address-level2" placeholder="Ex: Ribeirão Preto/SP" />
+              <label for="cityInp">Cidade/UF (opcional)</label>
+              <input class="input focus" id="cityInp" type="text" inputmode="text" autocomplete="address-level2" placeholder="Ex: Ribeirão Preto/SP" />
 
-          <label for="noteInp">Observações (opcional)</label>
-          <textarea class="textarea focus" id="noteInp"
-            placeholder="Ex: já tenho drone / foco em soja / preciso de certificado / quero trabalhar prestando serviço…"></textarea>
+              <label for="noteInp">Observações (opcional)</label>
+              <textarea class="textarea focus" id="noteInp"
+                placeholder="Ex: já tenho drone / foco em soja / preciso de certificado / quero prestar serviço…"></textarea>
+            </div>
+          </details>
 
           <div class="check">
             <input class="focus" id="consentLead" type="checkbox" />
@@ -905,9 +987,9 @@
             <button class="btn btn-primary focus" id="waBtn" type="button" disabled>Abrir WhatsApp</button>
           </div>
 
+          <!-- ✅ copy neutra -->
           <p class="hint" id="gateHint">
-            Para manter um atendimento rápido e sem ruído, o WhatsApp abre automaticamente quando há intenção real de matrícula.
-            Se não abrir, você ainda consegue copiar a mensagem e enviar quando quiser.
+            Você pode falar agora. A mensagem vai com um código de rota e sua origem (UTM) para agilizar o atendimento.
           </p>
         </div>
 
@@ -919,7 +1001,6 @@
             </div>
           </div>
 
-          <!-- ✅ “O que acontece depois” (expectativa clara) -->
           <div class="summary" id="nextSteps" style="margin-bottom:12px;">
             <div class="kv">
               <b>Depois disso</b><span>Você envia → Coordenação retorna com turmas/datas/valores → Confirmação → Matrícula.</span>
@@ -983,13 +1064,42 @@
           initials: "PL",
           name: "Escola Técnica Plenarius",
           tagline: "Curso de Drone Agrícola • Pulverização",
-          responseBadge: "Coordenadora Ana Carolina",
-          policyUrl: "https://escolaplenarius.com.br/index.php/piloto-de-drone-agricola/",
-          canonical: "" // opcional: "https://seu-dominio.com/curso-drone"
+          responseBadge: "Resposta hoje • Ana Carolina",
+          // ✅ ajuste para uma política real (crie a página se necessário)
+          policyUrl: "https://escolaplenarius.com.br/politica-de-privacidade/",
+          canonical: "https://escolaplenarius.com.br/piloto-de-drone-agricola/"
         },
 
         whatsappE164: "5515997996150",
         directWhatsAppAllowed: false,
+
+        /* ✅ WhatsApp roteado (não bloqueia clique quente) */
+        whatsappRouting: {
+          mode: "always_open", // "always_open" | "gate"
+
+          // ✅ visível ao lead (UI + WhatsApp) — não revela triagem
+          routeCode: { Q: "3", R: "2", N: "1", "—": "—" },
+
+          // ✅ roteiro da mensagem (natural, sem mencionar filtragem)
+          messageByQual: {
+            Q: {
+              intro: "Olá! Quero me matricular no curso de Drone Agrícola (ID: {{leadId}}).",
+              cta: "Pode me passar turmas/datas/valores e condições para matrícula?"
+            },
+            R: {
+              intro: "Olá! Tenho interesse no curso de Drone Agrícola (ID: {{leadId}}).",
+              cta: "Pode me enviar turmas/datas/valores e me orientar no melhor caminho?"
+            },
+            N: {
+              intro: "Olá! Estou pesquisando sobre o curso de Drone Agrícola (ID: {{leadId}}).",
+              cta: "Pode me enviar uma visão geral (datas/valores) para eu avaliar com calma?"
+            },
+            "—": {
+              intro: "Olá! Vim pela landing do curso de Drone Agrícola (ID: {{leadId}}).",
+              cta: "Pode me passar turmas/datas/valores e próximos passos?"
+            }
+          }
+        },
 
         ui: {
           themeDefault: "auto",
@@ -998,6 +1108,7 @@
         },
 
         design: {
+          heroBgUrlMobile: "https://images.unsplash.com/photo-1524143986875-3b3f0b91e5a3?auto=format&fit=crop&w=900&q=65",
           heroBgUrl: "https://images.unsplash.com/photo-1524143986875-3b3f0b91e5a3?auto=format&fit=crop&w=1600&q=70",
           logoUrl: "https://escolaplenarius.com.br/wp-content/uploads/2024/08/Logotipo_Plenarios-azul-PNG-2048x1115.png",
           heroCardImageUrl: "https://escolaplenarius.com.br/wp-content/uploads/2024/09/arteplenarius14-1-2048x819.png",
@@ -1012,6 +1123,7 @@
           sub: "Responda em ~60s e receba turmas, valores e orientação certa no WhatsApp (com ID + origem do anúncio).",
           kpis: [
             "Briefing: ~60s",
+            "Prática em campo + pulverização",
             "Bônus: Mapeamento 3D",
             "Hospedagem + prática",
             "Suporte completo"
@@ -1041,13 +1153,14 @@
           }
         },
 
+        /* ✅ gate ainda existe se você quiser voltar ao modo "gate" */
         qualification: {
           openWhatsAppFor: ["Q"],
         },
 
         leadCapture: {
           enabled: true,
-          targets: [],
+          targets: [], // ex.: [{ url:"https://..." }]
           timeoutMs: 4500,
         },
 
@@ -1120,9 +1233,9 @@
       /* =========================
          STATE
          ========================= */
-      const STORAGE_KEY = "lq_plenarius_vfinal_green";
+      const STORAGE_KEY = "lq_plenarius_premium_v1";
       const defaultState = () => ({
-        v: 3,
+        v: 4,
         step: 0,
         leadId: uid(),
         utm: parseUtm(),
@@ -1130,19 +1243,35 @@
         ctxIds: [],
         timing: "",
         budget: "",
+
+        // ✅ campos livres não persistem (mas existem no runtime)
         name: "",
         city: "",
         note: "",
+
         consentLead: false,
         consentCookies: false,
         leadSent: false,
         qual: "—",
+
+        // ✅ growth
+        funnelStartAt: Date.now(),
+        stepEnteredAt: Date.now(),
+
+        // runtime-only flags
+        _waWasEnabled: false,
+        _briefReady: false,
+
         ts: nowISO()
       });
 
       const state = Object.assign(defaultState(), SS.get(STORAGE_KEY, {}));
+
+      // merge UTMs da URL (sempre preferir a URL)
       state.utm = Object.assign(parseUtm(), state.utm || {});
       if (!state.leadId) state.leadId = uid();
+      if (!state.funnelStartAt) state.funnelStartAt = Date.now();
+      if (!state.stepEnteredAt) state.stepEnteredAt = Date.now();
 
       /* =========================
          ELEMENTS
@@ -1204,11 +1333,27 @@
       const cookieDecline = $("#cookieDecline");
 
       /* =========================
-         PERSIST
+         PERSIST (privacidade premium)
          ========================= */
       function persist(){
-        state.ts = nowISO();
-        SS.set(STORAGE_KEY, state);
+        const toSave = {
+          v: state.v,
+          step: state.step,
+          leadId: state.leadId,
+          utm: state.utm,
+          goalId: state.goalId,
+          ctxIds: state.ctxIds,
+          timing: state.timing,
+          budget: state.budget,
+          consentLead: state.consentLead,
+          consentCookies: state.consentCookies,
+          leadSent: state.leadSent,
+          qual: state.qual,
+          funnelStartAt: state.funnelStartAt,
+          stepEnteredAt: state.stepEnteredAt,
+          ts: nowISO()
+        };
+        SS.set(STORAGE_KEY, toSave);
       }
 
       let __raf = 0;
@@ -1228,10 +1373,23 @@
       };
 
       /* =========================
+         PERF: blur adaptativo
+         ========================= */
+      const applyPerfHeuristics = () => {
+        try{
+          const c = navigator.connection;
+          const low = c && (c.saveData || /2g/.test(String(c.effectiveType || "")));
+          const isMobile = matchMedia("(max-width: 560px)").matches;
+          if (low || isMobile) document.documentElement.style.setProperty("--blur", "0px");
+        } catch {}
+      };
+
+      /* =========================
          APPLY DESIGN ASSETS
          ========================= */
       const applyDesignAssets = () => {
-        const heroUrl = safeImageUrl(CONFIG.design?.heroBgUrl);
+        const isMobile = matchMedia("(max-width: 560px)").matches;
+        const heroUrl = safeImageUrl(isMobile ? CONFIG.design?.heroBgUrlMobile : CONFIG.design?.heroBgUrl);
         const heroOpacity = Number(CONFIG.design?.heroBgOpacityStep0 ?? 0.18);
         const onlyStep0 = !!CONFIG.design?.heroBgOnlyStep0;
 
@@ -1245,7 +1403,7 @@
         }
 
         const logoUrl = safeImageUrl(CONFIG.design?.logoUrl);
-        const logoImg = document.getElementById("brandLogoImg");
+        const logoImg = $("#brandLogoImg");
         if (logoImg && logoUrl){
           logoImg.src = logoUrl;
           document.documentElement.classList.add("has-logo");
@@ -1255,7 +1413,7 @@
         }
 
         const heroImgUrl = safeImageUrl(CONFIG.design?.heroCardImageUrl);
-        const heroImg = document.getElementById("heroDroneImg");
+        const heroImg = $("#heroDroneImg");
         if (heroImg && heroImgUrl){
           heroImg.src = heroImgUrl;
           heroImg.style.display = "block";
@@ -1264,9 +1422,8 @@
           heroImg.removeAttribute("src");
         }
 
-        // ✅ OG image (melhora compartilhamento)
         if (ogImgMeta){
-          ogImgMeta.setAttribute("content", heroImgUrl || "");
+          ogImgMeta.setAttribute("content", heroImgUrl || ogImgMeta.getAttribute("content") || "");
         }
       };
 
@@ -1425,8 +1582,7 @@
           ctxGroup.appendChild(el);
         }
 
-        // ✅ micro progress
-        const cc = document.getElementById("ctxCount");
+        const cc = $("#ctxCount");
         if (cc) cc.textContent = `Selecionados: ${state.ctxIds.length}`;
 
         setNextEnabled();
@@ -1453,26 +1609,40 @@
         return "N";
       };
 
+      /* ✅ helper (logo antes de renderQual) */
+      const getRouteCode = () => {
+        return (CONFIG.whatsappRouting?.routeCode?.[state.qual] ?? "—");
+      };
+
+      /* ✅ renderQual atualizado (sem Q/R/N e sem “prioridade”) */
       const renderQual = () => {
+        const prev = state.qual || "—";
         state.qual = computeQual();
-        const q = state.qual;
 
-        let label = "Qualificação: —";
-        if (q === "Q") label = "Qualificação: Q (libera WhatsApp)";
-        if (q === "N") label = "Qualificação: N (ainda não)";
-        if (q === "R") label = "Qualificação: R (zona cinza)";
-
-        qualBadge.textContent = label;
-
-        if (q === "Q"){
-          gateHint.textContent = "Liberado: você tem intenção real de matrícula. Atendimento tende a ser mais rápido.";
-        } else if (q === "R"){
-          gateHint.textContent = "Zona cinza: copie a mensagem para receber datas/valores e retome quando estiver mais decidido.";
-        } else if (q === "N"){
-          gateHint.textContent = "Por enquanto, o WhatsApp fica fechado para reduzir ruído. Copie a mensagem e salve (ou ajuste prazo/orçamento).";
-        } else {
-          gateHint.textContent = "Complete as escolhas para avaliarmos a melhor rota.";
+        if (state.qual !== prev){
+          track("qual_result", { qual: state.qual });
         }
+
+        const q = state.qual;
+        const route = getRouteCode();
+
+        // ✅ badge discreto (sem triagem/prioridade)
+        qualBadge.textContent = `Rota: ${route}`;
+
+        // ✅ hint: explica sem “castigo” e sem revelar filtragem
+        if (q === "Q"){
+          gateHint.textContent = "Rota 3: atendimento direto ao ponto (datas, valores e matrícula).";
+        } else if (q === "R"){
+          gateHint.textContent = "Rota 2: você recebe datas/valores e orientação para o melhor caminho.";
+        } else if (q === "N"){
+          gateHint.textContent = "Rota 1: você pode falar agora. Se estiver comparando, copie a mensagem e salve para retomar depois.";
+        } else {
+          gateHint.textContent = "Complete as escolhas para montarmos a mensagem e definir a rota de atendimento.";
+        }
+
+        // ✅ texto do botão discreto
+        const base = "Abrir WhatsApp";
+        waBtn.textContent = (route !== "—") ? `${base} • Rota ${route}` : base;
       };
 
       /* =========================
@@ -1486,17 +1656,28 @@
       }[v] || "—");
 
       const labelBudget = (v) => ({
-        "ready":"Já tenho orçamento / decidido",
+        "ready":"Quero me matricular (preciso datas/condições)",
         "maybe":"Tenho interesse, preciso alinhar valores",
         "no":"Sem orçamento no momento"
       }[v] || "—");
 
+      /* ✅ buildMessage atualizado (usa “Rota” numérica e remove triagem) */
       const buildMessage = () => {
         const g = getGoal();
         const ctx = getCtx();
-        const parts = [];
 
-        parts.push(`Olá! Vim pela landing do curso de Drone Agrícola (ID: ${state.leadId}).`);
+        const tpl = CONFIG.whatsappRouting?.messageByQual?.[state.qual]
+          || CONFIG.whatsappRouting?.messageByQual?.["—"]
+          || null;
+
+        const intro = (tpl?.intro || "Olá! (ID: {{leadId}})").replace("{{leadId}}", state.leadId);
+        const cta = tpl?.cta || "Pode me passar turmas/datas/valores e próximos passos?";
+        const route = getRouteCode();
+
+        const parts = [];
+        parts.push(intro);
+        parts.push("");
+        parts.push(`Rota de atendimento: ${route}`);
         parts.push("");
         parts.push("Resumo rápido:");
         parts.push(`- Objetivo: ${g ? g.title : "—"}`);
@@ -1504,6 +1685,7 @@
         parts.push(`- Prazo: ${labelTiming(state.timing)}`);
         parts.push(`- Momento: ${labelBudget(state.budget)}`);
 
+        // campos opcionais (runtime)
         if (state.name?.trim()) parts.push(`- Nome: ${state.name.trim().slice(0, 60)}`);
         if (state.city?.trim()) parts.push(`- Cidade: ${state.city.trim().slice(0, 80)}`);
         if (state.note?.trim()) parts.push(`- Observações: ${state.note.trim().slice(0, 420)}`);
@@ -1518,7 +1700,7 @@
         }
 
         parts.push("");
-        parts.push("Pode me passar turmas/datas/valores e próximos passos?");
+        parts.push(cta);
         return parts.join("\n");
       };
 
@@ -1532,36 +1714,53 @@
       const renderSummary = () => {
         const g = getGoal();
         const ctx = getCtx();
-        const s = [];
 
         const kv = [
           ["ID", state.leadId],
+          ["Rota", getRouteCode()],
           ["Objetivo", g ? g.title : "—"],
           ["Contexto", ctx.length ? ctx.map(x => x.title).join(", ") : "—"],
           ["Prazo", labelTiming(state.timing)],
           ["Momento", labelBudget(state.budget)]
         ];
 
+        const s = [];
         s.push('<div class="kv">');
         for (const [k,v] of kv){
           s.push(`<b>${escapeHtml(k)}</b><span>${escapeHtml(v)}</span>`);
         }
         s.push("</div>");
-
         summaryBox.innerHTML = s.join("");
 
         const msg = buildMessage();
         msgBox.textContent = msg;
 
-        const canCopy = !!state.goalId && state.ctxIds.length > 0 && !!state.timing && !!state.budget;
+        const canCopy = !!state.goalId && (state.ctxIds?.length > 0) && !!state.timing && !!state.budget;
         copyBtn.disabled = !canCopy;
 
-        const allowWa = CONFIG.qualification.openWhatsAppFor.includes(state.qual);
+        const mode = CONFIG.whatsappRouting?.mode || "gate";
+        const allowWa = (mode === "always_open") ? true : (CONFIG.qualification.openWhatsAppFor || []).includes(state.qual);
         waBtn.disabled = !(canCopy && allowWa);
 
-        const waUrl = buildWaUrl(msg);
+        // growth events: ready + WA available
+        if (canCopy && !state._briefReady){
+          state._briefReady = true;
+          track("time_to_complete", { ms: Date.now() - (state.funnelStartAt || Date.now()) });
+        }
+
+        const waEnabled = !waBtn.disabled;
+        if (waEnabled && !state._waWasEnabled){
+          state._waWasEnabled = true;
+          track("wa_available_shown", { qual: state.qual, mode });
+        }
+        if (!waEnabled && mode === "gate"){
+          track("wa_blocked_reason", { qual: state.qual, reason: "gate_mode_or_missing_fields" });
+        }
+
+        // noscript fallback: não sobrescrever se já tiver URL
         const ns = $("#noscriptWa");
-        if (ns) ns.href = waUrl || "#";
+        const waUrl = buildWaUrl(msg);
+        if (ns && waUrl) ns.href = waUrl;
       };
 
       /* =========================
@@ -1578,12 +1777,15 @@
           reason: String(reason || "unknown"),
           qual: state.qual,
           goalId: state.goalId,
-          ctxIds: state.ctxIds.slice(0, 20),
+          ctxIds: (state.ctxIds || []).slice(0, 20),
           timing: state.timing,
           budget: state.budget,
+
+          // ainda envia se estiver preenchido no runtime (mesmo não persistindo)
           name: (state.name || "").slice(0, 80),
           city: (state.city || "").slice(0, 120),
           note: (state.note || "").slice(0, 700),
+
           utm: state.utm || {},
           message: buildMessage()
         };
@@ -1651,11 +1853,21 @@
       };
 
       /* =========================
-         STEP NAV / RENDER
+         STEP NAV / FUNNEL EVENTS
          ========================= */
       const setStep = (n) => {
         const next = clamp(Number(n || 0), 0, 3);
+
+        // step_complete do anterior
+        try{
+          const prev = state.step;
+          const spent = Date.now() - (state.stepEnteredAt || Date.now());
+          track("step_complete", { step: prev, ms: spent });
+        } catch {}
+
         state.step = next;
+        state.stepEnteredAt = Date.now();
+
         document.body.setAttribute("data-step", String(next));
         persist();
 
@@ -1664,7 +1876,7 @@
           stepEls[i].setAttribute("aria-hidden", on ? "false" : "true");
         }
 
-        // ✅ foco no step (A11y + premium)
+        // foco no step (A11y)
         try{
           const target = stepEls[next];
           target.setAttribute("tabindex","-1");
@@ -1674,6 +1886,7 @@
         const pct = (next / 3) * 100;
         progFill.style.width = `${pct}%`;
 
+        track("step_start", { step: next });
         track("step_view", { step: next });
 
         if (next === 1) renderGoals();
@@ -1688,7 +1901,7 @@
 
       const setNextEnabled = () => {
         next1.disabled = !state.goalId;
-        next2.disabled = !(state.ctxIds && state.ctxIds.length > 0);
+        next2.disabled = !((state.ctxIds || []).length > 0);
       };
 
       /* =========================
@@ -1700,8 +1913,7 @@
           el.setAttribute("aria-checked", el.dataset.id === id ? "true" : "false");
         });
 
-        // ✅ “Saiba mais” dinâmico
-        const more = document.getElementById("goalMore");
+        const more = $("#goalMore");
         if (more){
           const map = {
             piloto: "Ideal para começar do zero com segurança + base técnica + rotina de operação (inclusive para quem ainda não tem drone).",
@@ -1713,10 +1925,9 @@
         }
 
         setNextEnabled();
-        persist();
+        persistDebounced();
         track("select_goal", { id });
 
-        // quando muda objetivo, Step 2 pode filtrar opções
         renderCtx();
       };
 
@@ -1730,12 +1941,11 @@
           el.setAttribute("aria-checked", on ? "true" : "false");
         });
 
-        // ✅ micro progress
-        const cc = document.getElementById("ctxCount");
+        const cc = $("#ctxCount");
         if (cc) cc.textContent = `Selecionados: ${state.ctxIds.length}`;
 
         setNextEnabled();
-        persist();
+        persistDebounced();
         track("toggle_ctx", { id, on: idx < 0 });
       };
 
@@ -1773,11 +1983,11 @@
         policyLink.style.pointerEvents = url ? "auto" : "none";
         policyLink.style.opacity = url ? "1" : ".6";
 
-        // ✅ canonical automático
+        // canonical override opcional (mas nunca vazio)
         const canon = document.querySelector('link[rel="canonical"]');
         if (canon){
           const c = safeHttpUrl(CONFIG.brand.canonical || "");
-          canon.href = c || (location.origin + location.pathname);
+          canon.href = c || canon.href || (location.origin + location.pathname);
         }
         if (ogUrlMeta){
           const canonUrl = (canon && canon.href) ? canon.href : (location.origin + location.pathname);
@@ -1789,13 +1999,14 @@
         heroHeadline.textContent = useB ? CONFIG.hero.headlineB : CONFIG.hero.headlineA;
         heroSub.textContent = CONFIG.hero.sub;
 
+        // KPI pills (3 acima da dobra no mobile via CSS)
         heroKpis.innerHTML = "";
-        for (const k of (CONFIG.hero.kpis || [])){
+        (CONFIG.hero.kpis || []).forEach((k, idx) => {
           const div = document.createElement("div");
-          div.className = "kpi";
+          div.className = "kpi" + (idx >= 3 ? " kpi-more" : "");
           div.textContent = k;
           heroKpis.appendChild(div);
-        }
+        });
 
         if (!CONFIG.directWhatsAppAllowed) directWaBtn.style.display = "none";
       };
@@ -1851,12 +2062,33 @@
          BOOT
          ========================= */
       const boot = async () => {
+        applyPerfHeuristics();
+
         const savedTheme = LS.get("lq_theme", null);
         setTheme(savedTheme || CONFIG.ui.themeDefault || "auto");
         themeBtn.addEventListener("click", cycleTheme);
 
+        // auto update theme-color on system change when theme is auto
+        try{
+          const mql = matchMedia("(prefers-color-scheme: light)");
+          const onMql = () => {
+            const cur = document.documentElement.getAttribute("data-theme") || "auto";
+            if (cur === "auto") setTheme("auto");
+          };
+          if (mql.addEventListener) mql.addEventListener("change", onMql);
+          else if (mql.addListener) mql.addListener(onMql);
+        } catch {}
+
         initCopy();
         applyDesignAssets();
+
+        // colapsar details no mobile para reduzir scroll inicial
+        try{
+          const isMobile = matchMedia("(max-width: 560px)").matches;
+          if (isMobile){
+            $$('details[data-collapse-mobile]').forEach(d => d.removeAttribute("open"));
+          }
+        } catch {}
 
         const savedCookie = LS.get("lq_cookie_consent", null);
         if (savedCookie !== null){
@@ -1871,6 +2103,7 @@
         cookieDecline.addEventListener("click", () => setCookieConsent(false));
 
         startBtn.addEventListener("click", () => setStep(1));
+
         directWaBtn.addEventListener("click", () => {
           const msg = "Olá! Quero informações sobre o curso de Drone Agrícola + Pulverização.";
           const wa = buildWaUrl(msg);
@@ -1893,20 +2126,20 @@
         next1.addEventListener("click", () => setStep(2));
         next2.addEventListener("click", () => setStep(3));
 
+        // rehydrate mínimos (campos livres não persistem)
         timingSel.value = state.timing || "";
         budgetSel.value = state.budget || "";
-        nameInp.value = state.name || "";
-        cityInp.value = state.city || "";
-        noteInp.value = state.note || "";
         consentLead.checked = !!state.consentLead;
 
         const recompute = () => {
           state.timing = timingSel.value || "";
           state.budget = budgetSel.value || "";
-          state.name = nameInp.value || "";
-          state.city = cityInp.value || "";
-          state.note = noteInp.value || "";
           state.consentLead = !!consentLead.checked;
+
+          // runtime-only (não persiste)
+          state.name = nameInp ? (nameInp.value || "") : "";
+          state.city = cityInp ? (cityInp.value || "") : "";
+          state.note = noteInp ? (noteInp.value || "") : "";
 
           softUpdate(() => { renderQual(); renderSummary(); });
           persistDebounced();
@@ -1914,10 +2147,15 @@
 
         timingSel.addEventListener("change", recompute);
         budgetSel.addEventListener("change", recompute);
-        nameInp.addEventListener("input", recompute);
-        cityInp.addEventListener("input", recompute);
-        noteInp.addEventListener("input", recompute);
-        consentLead.addEventListener("change", recompute);
+        if (nameInp) nameInp.addEventListener("input", recompute);
+        if (cityInp) cityInp.addEventListener("input", recompute);
+        if (noteInp) noteInp.addEventListener("input", recompute);
+
+        // ✅ evento de consentimento só quando o checkbox muda
+        consentLead.addEventListener("change", () => {
+          recompute();
+          track("consent_lead_toggle", { value: consentLead.checked ? "on" : "off" });
+        });
 
         copyBtn.addEventListener("click", async () => {
           const msg = buildMessage();
@@ -1936,8 +2174,9 @@
           const wa = buildWaUrl(msg);
           if (!wa) return showToast("WhatsApp", "Configure o número em CONFIG.whatsappE164", "danger");
 
+          // envio do lead só se consentLead (LGPD)
           await maybeSendLeadOnce("open_whatsapp");
-          track("wa_open", { qual: state.qual });
+          track("wa_open", { qual: state.qual, mode: CONFIG.whatsappRouting?.mode || "gate" });
           window.location.href = wa;
         });
 
